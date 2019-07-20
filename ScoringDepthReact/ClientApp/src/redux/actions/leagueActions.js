@@ -1,7 +1,7 @@
 ﻿import * as types from "./actionTypes";
 import * as leagueApi from "../../serverapi/leagueApi";
 
-export function loadLeagueSuccess(leagues) {
+export function loadSuccess(leagues) {
     return { type: types.LOAD_LEAGUES_SUCCESS, leagues };
 }
 
@@ -11,7 +11,7 @@ export function loadLeagues() {
         return leagueApi
             .getLeagues()
             .then(leagues => {
-                dispatch(loadLeagueSuccess(leagues));
+                dispatch(loadSuccess(leagues));
             })
             .catch(error => {
                 throw error;

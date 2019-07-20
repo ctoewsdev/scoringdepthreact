@@ -4,7 +4,7 @@ import * as regionActions from "../redux/actions/regionActions";
 import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
 
-class HomePage extends React.Component {
+class RegionsPage extends React.Component {
 
     componentDidMount() {
         this.props.actions.loadRegions().catch(error => {
@@ -15,10 +15,7 @@ class HomePage extends React.Component {
 
     render() {
         return (
-            <><div className="jumbotron">
-                <h1>Welcome to Scoring Depth</h1>
-                <p>Cutting edge team rankings based on scoring depth excellence.</p>
-            </div>
+            <>
                 <h2>Select a Region.</h2>
                 {this.props.regions.map(region => (
                     <div key={region.code}>{region.code}</div>
@@ -28,7 +25,7 @@ class HomePage extends React.Component {
     }
 }
 
-HomePage.propTypes = {
+RegionsPage.propTypes = {
     regions: PropTypes.array.isRequired,
     actions: PropTypes.object.isRequired
 };
@@ -50,6 +47,6 @@ function mapDispatchToProps(dispatch) {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(HomePage);
+)(RegionsPage);
 
 

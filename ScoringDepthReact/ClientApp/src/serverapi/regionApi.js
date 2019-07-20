@@ -1,8 +1,9 @@
 import { handleResponse, handleError } from "./apiUtils";
-const baseUrl = process.env.API_URL + "/authors/";
+const baseUrl = "api/region";
 
-export function getAuthors() {
+export function getRegions() {
   return fetch(baseUrl)
     .then(handleResponse)
     .catch(handleError);
 }
+
