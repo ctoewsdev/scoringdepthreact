@@ -10,9 +10,9 @@ namespace ScoringDepthReact.Models
     {
         public static void Seed(AppDbContext context)
         {
-            if (!context.Country.Any())
+            //if (!context.Country.Any())
 
-            {
+            //{
                 //Id's added automatically
 
                 var countries = new List<Country>
@@ -47,7 +47,7 @@ namespace ScoringDepthReact.Models
                 context.AddRange(leagues);
 
                 context.SaveChanges();
-            }
+          //  }
         }
     }
 }

@@ -10,8 +10,10 @@ namespace ScoringDepthReact
     {
         public static void Main(string[] args)
         {
-            // CreateWebHostBuilder(args).Build().Run();
+           
             var host = CreateWebHostBuilder(args).Build();
+
+            //get access to services from DI container (to get AppDbContext)
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
@@ -22,6 +24,7 @@ namespace ScoringDepthReact
                 }
                 catch (Exception e)
                 {
+                    //add logging later
                     Console.WriteLine(e);
                 }
             }
