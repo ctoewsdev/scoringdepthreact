@@ -19,11 +19,11 @@ namespace ScoringDepthReact.Controllers
         private readonly ISeasonRepository _seasonRepository;
         private readonly IFeedbackRepository _feedbackRepository;
 
-        private static List<League> Leagues = new List<League> ()
-        {
-            new League() { Name = "hc-British Columbia Junior Hockey League", Code ="hc-BCHL", ImageUrl = "hc-bchl.jpg" },
-            new League() { Name = "hc-Pacific Junior Hockey League", Code ="hc-PJHL", ImageUrl = "hc-pjhl.jpg" }
-        };
+        //private static List<League> Leagues = new List<League> ()
+        //{
+        //    new League() { Name = "hc-British Columbia Junior Hockey League", Code ="hc-BCHL", ImageUrl = "hc-bchl.jpg" },
+        //    new League() { Name = "hc-Pacific Junior Hockey League", Code ="hc-PJHL", ImageUrl = "hc-pjhl.jpg" }
+        //};
 
         //UDEMY
         //private static List<League> Leagues = new List<League>()
@@ -74,17 +74,17 @@ namespace ScoringDepthReact.Controllers
         [HttpGet]
         public List<League> GetLeagues()
         {
-           // var leagues = _leagueRepository.GetAllLeagues().OrderBy(l => l.Id);
+            var leagues = _leagueRepository.GetAllLeagues().OrderBy(l => l.Id).ToList();
             //var homeViewModel = new HomeViewModel()
             //{
             //    Leagues = leagues.ToList()
             //};
 
-
+            //var leagues;
 
            // return View(homeViewModel);
 
-           return Leagues;
+           return leagues;
            //  return leagues.ToList(); 
         }
 

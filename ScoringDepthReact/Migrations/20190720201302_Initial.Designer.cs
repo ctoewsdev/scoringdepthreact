@@ -9,7 +9,7 @@ using ScoringDepthReact.Models;
 namespace ScoringDepthReact.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20190720183949_Initial")]
+    [Migration("20190720201302_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
