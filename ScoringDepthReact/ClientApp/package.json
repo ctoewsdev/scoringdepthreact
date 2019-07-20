@@ -1,0 +1,47 @@
+{
+    "name": "ScoringDepthReact",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "bootstrap": "^4.3.1",
+        "jquery": "3.3.1",
+        "react": "^16.8.6",
+        "react-dom": "^16.8.6",
+        "react-redux": "^5.0.6",
+        "react-router-bootstrap": "^0.24.4",
+        "react-router-dom": "^5.0.0",
+        "react-router-redux": "^5.0.0-alpha.8",
+        "react-scripts": "3.0.1",
+        "reactstrap": "^6.3.0",
+        "redux": "^4.0.0",
+        "redux-thunk": "^2.2.0",
+        "rimraf": "^2.6.2"
+    },
+    "devDependencies": {
+        "ajv": "^6.0.0",
+        "cross-env": "^5.2.0",
+        "redux-immutable-state-invariant": "2.1.0",
+        "webpack": "4.29.6",
+        "webpack-bundle-analyzer": "3.1.0",
+        "webpack-cli": "3.3.0",
+        "webpack-dev-server": "3.2.1"
+    },
+    "scripts": {
+        "start": "rimraf ./build && react-scripts start",
+        "build": "react-scripts build",
+        "test": "cross-env CI=true react-scripts test --env=jsdom",
+        "eject": "react-scripts eject"
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    }
+}
