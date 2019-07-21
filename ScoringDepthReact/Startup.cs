@@ -29,7 +29,7 @@ namespace ScoringDepthReact
         public void ConfigureServices(IServiceCollection services)
         {
             //Register EF Core (using SqlServer connection) with ServiceCollection
-            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ExpressConnection")));
 
             services.Configure<CookiePolicyOptions>(options =>
             {
