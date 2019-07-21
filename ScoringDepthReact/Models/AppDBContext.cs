@@ -9,7 +9,7 @@ namespace ScoringDepthReact.Models
         //construct instance of options
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
-
+            //Database.SetInitializer<AppDbContext>(new CreateDatabaseIfNotExists<AppDbContext>());
         }
 
       //define table nam to be managed by EF Core

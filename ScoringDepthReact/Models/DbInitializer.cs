@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Migrations;
 using ScoringDepthReact.Models.Domain;
 
 namespace ScoringDepthReact.Models
@@ -10,9 +12,9 @@ namespace ScoringDepthReact.Models
     {
         public static void Seed(AppDbContext context)
         {
-            //if (!context.Country.Any())
+            if (!context.Country.Any())
 
-            //{
+            {
                 //Id's added automatically
 
                 var countries = new List<Country>
@@ -47,7 +49,9 @@ namespace ScoringDepthReact.Models
                 context.AddRange(leagues);
 
                 context.SaveChanges();
-          //  }
+
+               
+             }
         }
     }
 }
