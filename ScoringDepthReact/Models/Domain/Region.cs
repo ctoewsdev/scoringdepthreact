@@ -8,9 +8,10 @@ namespace ScoringDepthReact.Models.Domain
 {
     public class Region
     {
-        public long Id { get; set; }
+        public long RegionId { get; set; }
         public string Name { get; set; }
         public string Code { get; set; }
-        public string CountryCode { get; set; }
+
+        public ICollection<SeasonLeague> SeasonLeague { get; set; }
     }
 }

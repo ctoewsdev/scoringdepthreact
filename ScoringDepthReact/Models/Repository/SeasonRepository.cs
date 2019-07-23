@@ -25,7 +25,7 @@ namespace ScoringDepthReact.Models.Repository
 
         public Season GetSeasonById(int seasonId)
         {
-            return _appDbContext.Season.FirstOrDefault(s => s.Id == seasonId);
+            return _appDbContext.Season.FirstOrDefault(s => s.SeasonId == seasonId);
         }
     }
 }

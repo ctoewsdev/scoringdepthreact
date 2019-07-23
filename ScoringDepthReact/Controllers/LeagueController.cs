@@ -74,7 +74,7 @@ namespace ScoringDepthReact.Controllers
         [HttpGet]
         public List<League> GetLeagues()
         {
-            var leagues = _leagueRepository.GetAllLeagues().OrderBy(l => l.Id).ToList();
+            var leagues = _leagueRepository.GetAllLeagues().OrderBy(l => l.LeagueId).ToList();
             //var homeViewModel = new HomeViewModel()
             //{
             //    Leagues = leagues.ToList()
@@ -86,6 +86,23 @@ namespace ScoringDepthReact.Controllers
 
            return leagues;
            //  return leagues.ToList(); 
+        }
+
+        [HttpGet]
+        public List<League> GetLeaguesByRegion()
+        {
+            var leagues = _leagueRepository.GetAllLeagues().OrderBy(l => l.LeagueId).ToList();
+            //var homeViewModel = new HomeViewModel()
+            //{
+            //    Leagues = leagues.ToList()
+            //};
+
+            //var leagues;
+
+            // return View(homeViewModel);
+
+            return leagues;
+            //  return leagues.ToList(); 
         }
 
 

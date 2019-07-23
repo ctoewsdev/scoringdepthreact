@@ -10,6 +10,7 @@ import { Provider as ReduxProvider } from "react-redux";
 const store = configureStore();
 
 render(
+    //wraps entire frontend in redux
     <ReduxProvider store={store}>
         <Router>
             <App />

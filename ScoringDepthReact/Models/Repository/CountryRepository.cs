@@ -39,7 +39,7 @@ namespace ScoringDepthReact.Models.Repository
 
         public Country GetCountryById(int countryId)
         {
-            return _appDbContext.Country.FirstOrDefault(c => c.Id == countryId);
+            return _appDbContext.Country.FirstOrDefault(c => c.CountryId == countryId);
         }
     }
 }

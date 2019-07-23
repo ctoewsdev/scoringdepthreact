@@ -6,16 +6,27 @@ import { bindActionCreators } from "redux";
 
 class HomePage extends React.Component {
 
+    //componentDidMount() {
+    //    this.props.actions.loadRegions().catch(error => {
+    //        alert("Loading regions failed" + error);
+    //    });
+    //}
+
     componentDidMount() {
-        this.props.actions.loadRegions().catch(error => {
-            alert("Loading regions failed" + error);
-        });
+        const { regions, actions } = this.props;
+
+        if (regions.length === 0) {
+            actions.loadRegions().catch(error => {
+                alert("Loading courses failed" + error);
+            });
+        }
     }
 
 
     render() {
         return (
-            <><div className="jumbotron">
+            <>
+                <div className="jumbotron">
                 <h1>Welcome to Scoring Depth</h1>
                 <p>Cutting edge team rankings based on scoring depth excellence.</p>
             </div>

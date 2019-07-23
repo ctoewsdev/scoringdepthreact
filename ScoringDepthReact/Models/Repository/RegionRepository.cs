@@ -25,7 +25,7 @@ namespace ScoringDepthReact.Models.Repository
 
         public Region GetRegionById(int regionId)
         {
-            return _appDbContext.Region.FirstOrDefault(r => r.Id == regionId);
+            return _appDbContext.Region.FirstOrDefault(r => r.RegionId == regionId);
         }
     }
 }

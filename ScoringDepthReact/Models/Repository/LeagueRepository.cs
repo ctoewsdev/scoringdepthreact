@@ -21,7 +21,7 @@ namespace ScoringDepthReact.Models.Repository
 
         public League GetLeagueById(int leagueId)
         {
-            return _appDbContext.League.FirstOrDefault(l => l.Id == leagueId);
+            return _appDbContext.League.FirstOrDefault(l => l.LeagueId == leagueId);
         }
     }
 }

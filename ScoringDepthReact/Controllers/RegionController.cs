@@ -73,7 +73,7 @@ namespace ScoringDepthReact.Controllers
         [HttpGet]
         public List<Region> GetRegions()
         {
-            var regions = _regionRepository.GetAllRegions().OrderBy(l => l.Id).ToList();
+            var regions = _regionRepository.GetAllRegions().OrderBy(l => l.RegionId).ToList();
 
 
             return regions;

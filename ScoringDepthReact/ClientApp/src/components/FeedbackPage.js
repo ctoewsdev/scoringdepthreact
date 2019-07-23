@@ -7,13 +7,13 @@ import { bindActionCreators } from "redux";
 class FeedbackPage extends React.Component{
     state = {
         feedback: {
-            title: ""
+            firstName: ""
         }
     };
 
     handleChange = event => {
         //left clones existing state and right side overides state, which is then set.
-        const feedback = { ...this.state.feedback, title: event.target.value };
+        const feedback = { ...this.state.feedback, feedback: event.target.value };
         this.setState({ feedback });
     };
 
@@ -21,6 +21,13 @@ class FeedbackPage extends React.Component{
         event.preventDefault();
         this.props.actions.createFeedback(this.state.feedback);
     };
+
+    //public string FirstName { get; set; }
+    //    public string LastName { get; set; }
+    //    public string Role { get; set; }
+    //    public string Email { get; set; }
+    //    public string Message { get; set; }
+    //    public bool ContactMe { get; set; }
 
     render() {
         return (
@@ -30,26 +37,44 @@ class FeedbackPage extends React.Component{
                 <input
                     type="text"
                     onChange={this.handleChange}
-                    value={this.state.feedback.title}
+                    value={this.state.feedback.firstName}
+                />
+                <input
+                    type="text"
+                    onChange={this.handleChange}
+                    value={this.state.feedback.lastName}
+                />
+                <input
+                    type="text"
+                    onChange={this.handleChange}
+                    value={this.state.feedback.Role}
+                />
+                <input
+                    type="text"
+                    onChange={this.handleChange}
+                    value={this.state.feedback.email}
+                />
+                <input
+                    type="text"
+                    onChange={this.handleChange}
+                    value={this.state.feedback.message}
                 />
 
                 <input type="submit" value="Save" />
-                {this.props.feedbacks.map(feedback => (
-                        <div key={feedback.title}>{feedback.title}</div>
-                ))}
+                
             </form>
         );
     }
 }
 
 FeedbackPage.propTypes = {
-    feedbacks: PropTypes.array.isRequired,
+    feedback: PropTypes.array.isRequired,
     actions: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state) {
     return {
-        feedbacks: state.feedbacks
+        feedback: state.feedback
     };
 }
 
