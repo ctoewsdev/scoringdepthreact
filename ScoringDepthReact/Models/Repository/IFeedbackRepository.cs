@@ -5,7 +5,7 @@ namespace ScoringDepthReact.Models.Repository
 {
     public interface IFeedbackRepository
     {
-        void AddFeedback(Feedback feedback);
+        void CreateFeedback(Feedback feedback);
         IEnumerable<Feedback> GetAllFeedbacks();
     }
 }

@@ -1,11 +1,9 @@
 import { handleResponse, handleError } from "./apiUtils";
-const baseUrl = "api/region";
+const baseUrl = "api/season";
 
-export function getRegions() {
+export function getSeasons() {
   return fetch(baseUrl)
     .then(handleResponse)
     .catch(handleError);
 }
-
-
 

@@ -14,7 +14,7 @@ namespace ScoringDepthReact.Models.Repository
             _appDbContext = appDbContext;
         }
 
-        public void AddFeedback(Feedback feedback)
+        public void CreateFeedback(Feedback feedback)
         {
             _appDbContext.Feedback.Add(feedback);
             _appDbContext.SaveChanges();

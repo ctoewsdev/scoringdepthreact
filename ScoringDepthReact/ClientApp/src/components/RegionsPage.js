@@ -1,28 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from 'react-redux';
-import * as regionActions from "../redux/actions/regionActions";
+import { loadRegions } from "../redux/actions/regionActions";
 import PropTypes from "prop-types";
-import { bindActionCreators } from "redux";
+import RegionList from './RegionList';
 
-class RegionsPage extends React.Component {
+function RegionsPage({ seasons, regions, loadRegions, ...props }) {
+   
 
-    componentDidMount() {
-        this.props.actions.loadRegions().catch(error => {
-            alert("Loading regions failed" + error);
-        });
-    }
+    useEffect(() => {
+    
 
+        if (regions.length === 0) {
+            loadRegions().catch(error => {
+                alert("Loading regions failed" + error);
+            });
+        }
+    }, []);
 
-    render() {
-        return (
-            <>
-                <h2>Select a Region.</h2>
-                {this.props.regions.map(region => (
-                    <div key={region.code}>{region.code}</div>
-                ))}
-            </>
-        );
-    }
+    return (
+        <>
+            <h1 class="text-center">Season:  </h1>
+            <h2 class="text-center">Please select a region</h2>
+            <RegionList regions={regions} />
+        </>
+    );
 }
 
 RegionsPage.propTypes = {
@@ -30,19 +31,17 @@ RegionsPage.propTypes = {
     actions: PropTypes.object.isRequired
 };
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
+    const seasonYear = ownProps.match.params.name;
     return {
-        regions: state.regions
+        regions: state.regions,
+        season: ownProps.match.params.name
     };
 }
 
-function mapDispatchToProps(dispatch) {
-    return {
-        actions: {
-            loadRegions: bindActionCreators(regionActions.loadRegions, dispatch),
-        }
-    };
-}
+const mapDispatchToProps = {
+    loadRegions
+};
 
 export default connect(
     mapStateToProps,

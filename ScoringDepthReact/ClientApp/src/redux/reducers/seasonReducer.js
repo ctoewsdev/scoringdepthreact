@@ -1,10 +1,10 @@
 import * as types from "../actions/actionTypes";
 import initialState from "./initialState";
 
-export default function regionReducer(state = initialState.regions, action) {
+export default function seasonReducer(state = initialState.seasons, action) {
     switch (action.type) {
-        case types.LOAD_REGIONS_SUCCESS:
-            return action.regions;
+        case types.LOAD_SEASONS_SUCCESS:
+            return action.seasons;
         default:
             return state;
     }

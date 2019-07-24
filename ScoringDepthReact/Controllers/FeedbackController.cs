@@ -11,7 +11,7 @@ using ScoringDepthReact.Models.ViewModels;
 namespace ScoringDepthReact.Controllers
 {
     [Route("api/[controller]")]
-    public class LeagueController : Controller
+    public class FeedbackController : Controller
     {
         private readonly ICountryRepository _countryRepository;
         private readonly IRegionRepository _regionRepository;
@@ -19,11 +19,21 @@ namespace ScoringDepthReact.Controllers
         private readonly ISeasonRepository _seasonRepository;
         private readonly IFeedbackRepository _feedbackRepository;
 
+        //private static List<League> Leagues = new List<League> ()
+        //{
+        //    new League() { Name = "hc-British Columbia Junior Hockey League", Code ="hc-BCHL", ImageUrl = "hc-bchl.jpg" },
+        //    new League() { Name = "hc-Pacific Junior Hockey League", Code ="hc-PJHL", ImageUrl = "hc-pjhl.jpg" }
+        //};
 
-
+        //private static List<Region> regions = new List<Region>()
+        //{
+        //    new Region() { Name = "British Columbia", Code = "BC", CountryCode="Can" },
+        //    new Region() { Name = "Alberta", Code = "AB", CountryCode="Can" },
+        //    new Region() { Name = "Saskatchewan", Code = "SK", CountryCode="Can" }
+        //};
 
         // ctor dependency injection
-        public LeagueController(ICountryRepository countryRepository, IRegionRepository regionRepository, ILeagueRepository leagueRepository, ISeasonRepository seasonRepository, IFeedbackRepository feedbackRepository)
+        public FeedbackController(ICountryRepository countryRepository, IRegionRepository regionRepository, ILeagueRepository leagueRepository, ISeasonRepository seasonRepository, IFeedbackRepository feedbackRepository)
         {
 
             _countryRepository = countryRepository;
@@ -60,41 +70,31 @@ namespace ScoringDepthReact.Controllers
 
         // [HttpGet]Get : does not require tag
         // public IActionResult Index()
-        [HttpGet]
-        public List<League> GetLeagues()
+        //[HttpGet]
+        //public List<Season> GetSeasons()
+        //{
+        //    var seasons = _seasonRepository.GetAllSeasons().OrderBy(l => l.SeasonId).ToList();
+
+
+        //    return seasons;
+
+        //}
+
+
+        // POST: api/feedback
+        [HttpPost]
+        public IActionResult CreateFeedback(Feedback feedback)
         {
-            var leagues = _leagueRepository.GetAllLeagues().OrderBy(l => l.LeagueId).ToList();
-            //var homeViewModel = new HomeViewModel()
-            //{
-            //    Leagues = leagues.ToList()
-            //};
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-            //var leagues;
+          _feedbackRepository.CreateFeedback(feedback);
 
-           // return View(homeViewModel);
 
-           return leagues;
-           //  return leagues.ToList(); 
+          return CreatedAtAction("CreateFeedback", new { id = feedback.FeedbackId }, feedback);
         }
-
-        [HttpGet]
-        public List<League> GetLeaguesByRegion()
-        {
-            var leagues = _leagueRepository.GetAllLeagues().OrderBy(l => l.LeagueId).ToList();
-            //var homeViewModel = new HomeViewModel()
-            //{
-            //    Leagues = leagues.ToList()
-            //};
-
-            //var leagues;
-
-            // return View(homeViewModel);
-
-            return leagues;
-            //  return leagues.ToList(); 
-        }
-
-
         // UDEMY
         //[HttpGet]
         //public List<League> GetLeagues()

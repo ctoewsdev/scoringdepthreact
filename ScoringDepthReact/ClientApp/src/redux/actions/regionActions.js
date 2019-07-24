@@ -18,3 +18,16 @@ export function loadRegions() {
             });
     };
 }
+
+export function loadRegionsByYear() {
+    return function (dispatch) {
+        return regionApi
+            .getRegions()
+            .then(regions => {
+                dispatch(loadSuccess(regions));
+            })
+            .catch(error => {
+                throw error;
+            });
+    };
+}

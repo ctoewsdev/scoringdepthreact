@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using ScoringDepthReact.Common;
 using ScoringDepthReact.Models.Domain;
 using ScoringDepthReact.Models.Repository;
@@ -88,8 +89,8 @@ namespace ScoringDepthReact.Controllers
         //    return Leagues;
         //}
 
-        //[HttpGet("[action]/{code}")]
-        //public League GetLeague(string code)
+        //[HttpGet("[action]/{season}")]
+        //public List<Region> GetRegions(string season)
         //{
         //    var league = Leagues.Find((l) => l.Code.ToLower() == code.ToLower());
 
@@ -98,7 +99,7 @@ namespace ScoringDepthReact.Controllers
         //        return null;
         //    }
 
-        //        return league;
+        //    return league;
 
         //}
 
