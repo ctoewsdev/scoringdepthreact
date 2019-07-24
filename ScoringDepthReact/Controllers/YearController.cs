@@ -11,12 +11,12 @@ using ScoringDepthReact.Models.ViewModels;
 namespace ScoringDepthReact.Controllers
 {
     [Route("api/[controller]")]
-    public class SeasonController : Controller
+    public class YearController : Controller
     {
         private readonly ICountryRepository _countryRepository;
         private readonly IRegionRepository _regionRepository;
         private readonly ILeagueRepository _leagueRepository;
-        private readonly ISeasonRepository _seasonRepository;
+        private readonly IYearRepository _yearRepository;
         private readonly IFeedbackRepository _feedbackRepository;
 
         //private static List<League> Leagues = new List<League> ()
@@ -33,13 +33,13 @@ namespace ScoringDepthReact.Controllers
         //};
 
         // ctor dependency injection
-        public SeasonController(ICountryRepository countryRepository, IRegionRepository regionRepository, ILeagueRepository leagueRepository, ISeasonRepository seasonRepository, IFeedbackRepository feedbackRepository)
+        public YearController(ICountryRepository countryRepository, IRegionRepository regionRepository, ILeagueRepository leagueRepository, IYearRepository yearRepository, IFeedbackRepository feedbackRepository)
         {
 
             _countryRepository = countryRepository;
             _regionRepository = regionRepository;
             _leagueRepository = leagueRepository;
-            _seasonRepository = seasonRepository;
+            _yearRepository = yearRepository;
             _feedbackRepository = feedbackRepository;
         }
 
@@ -71,9 +71,9 @@ namespace ScoringDepthReact.Controllers
         // [HttpGet]Get : does not require tag
         // public IActionResult Index()
         [HttpGet]
-        public List<Season> GetSeasons()
+        public List<Year> GetYears()
         {
-            var seasons = _seasonRepository.GetAllSeasons().OrderBy(l => l.SeasonId).ToList();
+            var seasons = _yearRepository.GetAllYears().OrderBy(l => l.YearId).ToList();
 
 
             return seasons;

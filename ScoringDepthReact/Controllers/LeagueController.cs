@@ -16,20 +16,20 @@ namespace ScoringDepthReact.Controllers
         private readonly ICountryRepository _countryRepository;
         private readonly IRegionRepository _regionRepository;
         private readonly ILeagueRepository _leagueRepository;
-        private readonly ISeasonRepository _seasonRepository;
+        private readonly IYearRepository _yearRepository;
         private readonly IFeedbackRepository _feedbackRepository;
 
 
 
 
         // ctor dependency injection
-        public LeagueController(ICountryRepository countryRepository, IRegionRepository regionRepository, ILeagueRepository leagueRepository, ISeasonRepository seasonRepository, IFeedbackRepository feedbackRepository)
+        public LeagueController(ICountryRepository countryRepository, IRegionRepository regionRepository, ILeagueRepository leagueRepository, IYearRepository yearRepository, IFeedbackRepository feedbackRepository)
         {
 
             _countryRepository = countryRepository;
             _regionRepository = regionRepository;
             _leagueRepository = leagueRepository;
-            _seasonRepository = seasonRepository;
+            _yearRepository = yearRepository;
             _feedbackRepository = feedbackRepository;
         }
 

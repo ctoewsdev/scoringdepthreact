@@ -18,16 +18,16 @@ namespace ScoringDepthReact.Models
                 //Id's added automatically
 
                 //Seasons
-                var seasons = new List<Season>();
-                var s17 = (new Season {YearStart = 2017, Name = "2017-18"});
-                var s18 = (new Season { YearStart = 2018, Name = "2018-19" });
-                var s19 = (new Season { YearStart = 2019, Name = "2019-20" });
-                var s20 = (new Season { YearStart = 2020, Name = "2020-21" });
-                seasons.Add(s17);
-                seasons.Add(s18);
-                seasons.Add(s19);
-                seasons.Add(s20);
-                context.AddRange(seasons);
+                var years = new List<Year>();
+                var s17 = (new Year {YearStart = 2017, Name = "2017-18"});
+                var s18 = (new Year { YearStart = 2018, Name = "2018-19" });
+                var s19 = (new Year { YearStart = 2019, Name = "2019-20" });
+                var s20 = (new Year { YearStart = 2020, Name = "2020-21" });
+                years.Add(s17);
+                years.Add(s18);
+                years.Add(s19);
+                years.Add(s20);
+                context.AddRange(years);
 
                 //Countries
                 var countries = new List<Country>();
@@ -82,18 +82,18 @@ namespace ScoringDepthReact.Models
 
 
 
-                //SeasonLeague
-                var seasonLeagues = new List<SeasonLeague>();
-                var s18Sl1 = (new SeasonLeague { SeasonId = s18.SeasonId, CountryId = can.CountryId, RegionId = canBc.RegionId, LeagueId = bcpjhl.LeagueId, TeamId = pilots1.TeamId, WeekRankingId = s18PilotsWk1.WeekRankingId });
+                //Seasons
+                var seasons = new List<Season>();
+                var s18Sl1 = (new Season { YearId = s18.YearId, CountryId = can.CountryId, RegionId = canBc.RegionId, LeagueId = bcpjhl.LeagueId, TeamId = pilots1.TeamId, WeekRankingId = s18PilotsWk1.WeekRankingId });
                 //var s18Sl2 = (new SeasonLeague { Season = s18, Country = can, Region = canBc, League = bcpjhl, Team = pilots1, WeekRanking = s18PilotsWk2 });
                 //var s18Sl3 = (new SeasonLeague { Season = s18, Country = can, Region = canBc, League = bcpjhl, Team = trappers1, WeekRanking = s18TrappersWk1 });
                 //var s18Sl4 = (new SeasonLeague { Season = s18, Country = can, Region = canBc, League = bcpjhl, Team = trappers1, WeekRanking = s18TrappersWk2 });
 
-                seasonLeagues.Add(s18Sl1);
+                seasons.Add(s18Sl1);
                 //seasonLeagues.Add(s18Sl2);
                 //seasonLeagues.Add(s18Sl3);
                 //seasonLeagues.Add(s18Sl4);
-                context.AddRange(seasonLeagues);
+                context.AddRange(seasons);
 
                 context.SaveChanges();
 

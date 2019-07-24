@@ -3,9 +3,9 @@ using ScoringDepthReact.Models.Domain;
 
 namespace ScoringDepthReact.Models.Repository
 {
-    public interface ISeasonRepository
+    public interface IYearRepository
     {
-        IEnumerable<Season> GetAllSeasons();
-        Season GetSeasonById(int seasonId);
+        IEnumerable<Year> GetAllYears();
+        Year GetYearById(int yearId);
     }
 }

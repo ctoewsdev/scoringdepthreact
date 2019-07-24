@@ -15,13 +15,13 @@ namespace ScoringDepthReact.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<SeasonLeague>()
-                .HasKey(e => new { e.SeasonId, e.CountryId });
+            modelBuilder.Entity<Season>()
+                .HasKey(e => new { SeasonId = e.YearId, e.CountryId });
 
         }
 
         //define table nam to be managed by EF Core
-        public DbSet<Season> Season { get; set; }
+        public DbSet<Year> Year { get; set; }
         public DbSet<Country> Country { get; set; }
         public DbSet<Region> Region { get; set; }
         public DbSet<League> League { get; set; }
@@ -30,6 +30,6 @@ namespace ScoringDepthReact.Models
 
         public DbSet<Feedback> Feedback { get; set; }
 
-        public DbSet<SeasonLeague> SeasonLeague { get; set; }
+        public DbSet<Season> Season { get; set; }
     }
 }

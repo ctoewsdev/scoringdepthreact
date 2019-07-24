@@ -12,6 +12,6 @@ namespace ScoringDepthReact.Models.Domain
         public int Week { get; set; }
         public double Sdi { get; set; }
 
-        public ICollection<SeasonLeague> SeasonLeague { get; set; }
+        public ICollection<Season> SeasonLeague { get; set; }
     }
 }

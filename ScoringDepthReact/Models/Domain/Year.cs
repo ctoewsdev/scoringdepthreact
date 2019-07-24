@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace ScoringDepthReact.Models.Domain
 {
-    public class Team
+    public class Year
     {
-        public long TeamId { get; set; }
+        public long YearId { get; set; }
+        public int YearStart { get; set; }
         public string Name { get; set; }
-        public string Code { get; set; }
-        public string ImageUrl { get; set; }
 
         public ICollection<Season> SeasonLeague { get; set; }
     }
