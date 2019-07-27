@@ -44,9 +44,10 @@ namespace ScoringDepthReact
                 configuration.RootPath = "ClientApp/build";
             });
 
-           
+
 
             // provide instances of dependencies
+            services.AddTransient<IYearRepository, YearRepository>();
             services.AddTransient<ICountryRepository, CountryRepository>();
             services.AddTransient<IRegionRepository, RegionRepository>();
             services.AddTransient<ILeagueRepository, LeagueRepository>();

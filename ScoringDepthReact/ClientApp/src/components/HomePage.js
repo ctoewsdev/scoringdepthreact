@@ -54,7 +54,7 @@ class HomePage extends React.Component {
                 </div>
                 <h2 className="text-center">Select a season</h2>
               
-                <SeasonList seasons={this.props.seasons} />
+                <SeasonList years={this.props.years} />
             </>
         );
     }

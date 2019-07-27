@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-const SeasonList = ({ seasons }) => (
+const SeasonList = ({ years }) => (
     <table className="table">
         <thead>
             <tr>
@@ -11,7 +11,7 @@ const SeasonList = ({ seasons }) => (
             </tr>
         </thead>
         <tbody>
-            {seasons.map(season => {
+            {years.map(year => {
                 return (
                     <tr key={year.yearId}>
                         <td>{year.yearStart}</td>
