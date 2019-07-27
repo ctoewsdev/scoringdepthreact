@@ -1,7 +1,7 @@
 ﻿import * as types from "./actionTypes";
 import * as seasonApi from "../../serverapi/seasonApi";
 
-export function loadSuccess(seasons) {
+export function loadSuccessSeasons(seasons) {
     return { type: types.LOAD_SEASONS_SUCCESS, seasons };
 }
 
@@ -11,7 +11,7 @@ export function loadSeasons() {
         return seasonApi
             .getSeasons()
             .then(seasons => {
-                dispatch(loadSuccess(seasons));
+                dispatch(loadSuccessSeasons(seasons));
             })
             .catch(error => {
                 throw error;

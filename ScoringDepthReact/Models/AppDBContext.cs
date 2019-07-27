@@ -16,7 +16,31 @@ namespace ScoringDepthReact.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Season>()
-                .HasKey(e => new { SeasonId = e.YearId, e.CountryId });
+                .Property(x => x.SeasonId)
+                .ValueGeneratedOnAdd();
+            modelBuilder.Entity<Season>()
+                .HasKey(x => new { YearRegionId = x.SeasonId });
+
+
+            modelBuilder.Entity<LeagueSeason>()
+                .Property(x => x.LeagueSeasonId)
+                .ValueGeneratedOnAdd();
+            modelBuilder.Entity<LeagueSeason>()
+                .HasKey(x => new { x.LeagueSeasonId});
+
+
+            modelBuilder.Entity<TeamSeason>()
+                .Property(x => x.TeamSeasonId)
+                .ValueGeneratedOnAdd();
+            modelBuilder.Entity<TeamSeason>()
+                .HasKey(x => new { x.TeamSeasonId});
+
+            modelBuilder.Entity<SeasonRanking>()
+                .Property(x => x.SeasonRankingId)
+                .ValueGeneratedOnAdd();
+            modelBuilder.Entity<SeasonRanking>()
+                .HasKey(x => new { x.SeasonRankingId });
+
 
         }
 
@@ -24,12 +48,13 @@ namespace ScoringDepthReact.Models
         public DbSet<Year> Year { get; set; }
         public DbSet<Country> Country { get; set; }
         public DbSet<Region> Region { get; set; }
-        public DbSet<League> League { get; set; }
-        public DbSet<Team> Team { get; set; }
-        public DbSet<WeekRanking> WeekRanking { get; set; }
-
-        public DbSet<Feedback> Feedback { get; set; }
-
         public DbSet<Season> Season { get; set; }
+        public DbSet<League> League { get; set; }
+        public DbSet<LeagueSeason> LeagueSeason { get; set; }
+        public DbSet<Team> Team { get; set; }
+        public DbSet<Ranking> Ranking { get; set; }
+        public DbSet<Feedback> Feedback { get; set; }
+        public DbSet<SeasonRanking> SeasonRanking { get; set; }
+        public DbSet<TeamSeason> TeamSeason { get; set; }
     }
 }

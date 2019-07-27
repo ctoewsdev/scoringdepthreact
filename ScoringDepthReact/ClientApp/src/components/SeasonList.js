@@ -13,10 +13,10 @@ const SeasonList = ({ seasons }) => (
         <tbody>
             {seasons.map(season => {
                 return (
-                    <tr key={season.seasonId}>
-                        <td>{season.yearStart}</td>
+                    <tr key={year.yearId}>
+                        <td>{year.yearStart}</td>
                         <td>
-                            <Link to={"/season/" + season.name}>{season.name}</Link>
+                            <Link to={"/season/" + year.name}>{year.name}</Link>
                         </td>                
                     </tr>
                 );

@@ -31,7 +31,7 @@ namespace ScoringDepthReact.Models.Repository
         //    };
         //}
     
-        public IEnumerable<Country> GetAllCountries()
+        public IEnumerable<Country> GetCountries()
         {
             //populate collection from country table on DB (or DBContext if already loaded)
             return _appDbContext.Country;

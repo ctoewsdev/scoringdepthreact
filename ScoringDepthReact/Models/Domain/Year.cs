@@ -12,6 +12,10 @@ namespace ScoringDepthReact.Models.Domain
         public int YearStart { get; set; }
         public string Name { get; set; }
 
-        public ICollection<Season> SeasonLeague { get; set; }
+
+        //collection navigation to linking class
+        public ICollection<Season> YearRegionRefs { get; set; }
+
+
     }
 }

@@ -8,18 +8,19 @@ using Microsoft.VisualBasic.CompilerServices;
 
 namespace ScoringDepthReact.Models.Domain
 {
-    public class Season
+    public class LeagueSeason
     {
-        public long SeasonId { get; set; }
+        public long LeagueSeasonId { get; set; }
 
-        public long YearId { get; set; }
-        public Year Year { get; set; }
-
-        public long RegionId { get; set; }
-        public Region Region { get; set; }
+        public long YearRegionId { get; set; }
+        public Season YearRegion { get; set; }
+ 
+        public long LeagueId { get; set; }
+        public League League { get; set; }
 
         //collection navigation to linking class
-        public ICollection<LeagueSeason> LeagueSeasons { get; set; }
+        public ICollection<TeamSeason> TeamSeasons { get; set; }
+
 
     }
 }

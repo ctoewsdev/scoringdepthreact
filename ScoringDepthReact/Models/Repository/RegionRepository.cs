@@ -18,7 +18,7 @@ namespace ScoringDepthReact.Models.Repository
         /// Load data into underlying DB
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<Region> GetAllRegions()
+        public IEnumerable<Region> GetRegions()
         {
             return _appDbContext.Region;
         }

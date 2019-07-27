@@ -5,7 +5,7 @@ namespace ScoringDepthReact.Models.Repository
 {
     public interface ICountryRepository
     {
-        IEnumerable<Country> GetAllCountries();
+        IEnumerable<Country> GetCountries();
         Country GetCountryById(int countryId);
     }
 }

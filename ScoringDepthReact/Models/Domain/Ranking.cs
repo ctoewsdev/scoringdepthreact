@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace ScoringDepthReact.Models.Domain
 {
-    public class WeekRanking
+    public class Ranking
     {
-        public long WeekRankingId { get; set; }
-        public int Week { get; set; }
+        public long RankingId { get; set; }
+        public int Period { get; set; }
         public double Sdi { get; set; }
 
-        public ICollection<Season> SeasonLeague { get; set; }
+        //collection navigation to linking class
+        public ICollection<SeasonRanking> SeasonRankingRefIds { get; set; }
     }
 }

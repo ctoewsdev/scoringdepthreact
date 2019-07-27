@@ -4,12 +4,12 @@ using ScoringDepthReact.Models.Domain;
 
 namespace ScoringDepthReact.Models.Repository
 {
-    public class YearRepository : IYearRepository
+    public class SeasonRepository : ISeasonRepository
     {
 
         private readonly AppDbContext _appDbContext;
 
-        public YearRepository(AppDbContext appDbContext)
+        public SeasonRepository(AppDbContext appDbContext)
         {
             _appDbContext = appDbContext;
         }
@@ -18,9 +18,9 @@ namespace ScoringDepthReact.Models.Repository
         /// Load data into underlying DB
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<Year> GetYears()
+        public IEnumerable<Season> GetSeasons()
         {
-            return _appDbContext.Year;
+            return _appDbContext.Season;
         }
 
         //public Year GetYearById(int yearId)

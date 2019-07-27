@@ -16,8 +16,9 @@ namespace ScoringDepthReact.Controllers
         private readonly ICountryRepository _countryRepository;
         private readonly IRegionRepository _regionRepository;
         private readonly ILeagueRepository _leagueRepository;
-        private readonly IYearRepository _yearRepository;
+        private readonly ISeasonRepository _seasonRepository;
         private readonly IFeedbackRepository _feedbackRepository;
+        private readonly IYearRepository _yearRepository;
 
         //private static List<League> Leagues = new List<League> ()
         //{
@@ -33,14 +34,15 @@ namespace ScoringDepthReact.Controllers
         //};
 
         // ctor dependency injection
-        public YearController(ICountryRepository countryRepository, IRegionRepository regionRepository, ILeagueRepository leagueRepository, IYearRepository yearRepository, IFeedbackRepository feedbackRepository)
+        public YearController(ICountryRepository countryRepository, IRegionRepository regionRepository, ILeagueRepository leagueRepository, ISeasonRepository seasonRepository, IFeedbackRepository feedbackRepository, IYearRepository yearRepository)
         {
 
             _countryRepository = countryRepository;
             _regionRepository = regionRepository;
             _leagueRepository = leagueRepository;
-            _yearRepository = yearRepository;
+            _seasonRepository = seasonRepository;
             _feedbackRepository = feedbackRepository;
+            _yearRepository = yearRepository;
         }
 
         // [HttpGet]Get : does not require tag
@@ -73,13 +75,13 @@ namespace ScoringDepthReact.Controllers
         [HttpGet]
         public List<Year> GetYears()
         {
-            var seasons = _yearRepository.GetAllYears().OrderBy(l => l.YearId).ToList();
+            var years = _yearRepository.GetYears().ToList();
 
 
-            return seasons;
-           
+            return years;
+
         }
-
+        
 
         // UDEMY
         //[HttpGet]

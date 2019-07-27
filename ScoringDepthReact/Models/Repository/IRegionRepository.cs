@@ -5,7 +5,7 @@ namespace ScoringDepthReact.Models.Repository
 {
     public interface IRegionRepository
     {
-        IEnumerable<Region> GetAllRegions();
+        IEnumerable<Region> GetRegions();
         Region GetRegionById(int regionId);
     }
 }

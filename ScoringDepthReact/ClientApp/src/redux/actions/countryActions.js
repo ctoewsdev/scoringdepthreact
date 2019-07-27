@@ -1,17 +1,17 @@
 ﻿import * as types from "./actionTypes";
-import * as leagueApi from "../../serverapi/leagueApi";
+import * as countryApi from "../../serverapi/countryApi";
 
-export function loadSuccess(leagues) {
-    return { type: types.LOAD_LEAGUES_SUCCESS, leagues };
+export function loadSuccess(countries) {
+    return { type: types.LOAD_COUNTRIES_SUCCESS, countries };
 }
 
 // thunk
-export function loadLeagues() {
+export function loadCountries() {
     return function (dispatch) {
-        return leagueApi
-            .getLeagues()
-            .then(leagues => {
-                dispatch(loadSuccess(leagues));
+        return countryApi
+            .getCountries()
+            .then(countries => {
+                dispatch(loadSuccess(countries));
             })
             .catch(error => {
                 throw error;
