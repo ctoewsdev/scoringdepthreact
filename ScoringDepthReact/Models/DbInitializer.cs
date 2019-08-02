@@ -13,7 +13,6 @@ namespace ScoringDepthReact.Models
         public static void Seed(AppDbContext context)
         {
             if (!context.Country.Any())
-
             {
             //Id's added automatically
 

@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-const SeasonList = ({ years }) => (
+const YearsList = ({ years }) => (
     <table className="table">
         <thead>
             <tr>
@@ -16,7 +16,7 @@ const SeasonList = ({ years }) => (
                     <tr key={year.yearId}>
                         <td>{year.yearStart}</td>
                         <td>
-                            <Link to={"/season/" + year.name}>{year.name}</Link>
+                            <Link to={"/season/" + year.yearId}>{year.name}</Link>
                         </td>                
                     </tr>
                 );
@@ -25,8 +25,8 @@ const SeasonList = ({ years }) => (
     </table>
 );
 
-SeasonList.propTypes = {
-    seasons: PropTypes.array.isRequired,
+YearsList.propTypes = {
+    years: PropTypes.array.isRequired,
 };
 
-export default SeasonList;
+export default YearsList;

@@ -11,7 +11,7 @@ using ScoringDepthReact.Models.ViewModels;
 namespace ScoringDepthReact.Controllers
 {
     [Route("api/[controller]")]
-    public class CountriesController : Controller
+    public class CountryController : Controller
     {
         private readonly ICountryRepository _countryRepository;
         private readonly IRegionRepository _regionRepository;
@@ -35,7 +35,7 @@ namespace ScoringDepthReact.Controllers
 
 
         // ctor dependency injection
-        public CountriesController(ICountryRepository countryRepository, IRegionRepository regionRepository, ILeagueRepository leagueRepository, ISeasonRepository yearRepository, IFeedbackRepository feedbackRepository)
+        public CountryController(ICountryRepository countryRepository, IRegionRepository regionRepository, ILeagueRepository leagueRepository, ISeasonRepository yearRepository, IFeedbackRepository feedbackRepository)
         {
 
             _countryRepository = countryRepository;
@@ -76,11 +76,11 @@ namespace ScoringDepthReact.Controllers
         public List<Country> GetCountries()
         {
 
-           // var leagues = _leagueRepository.GetAllCountries().OrderBy(l => l.Id);
+            var countries = _countryRepository.GetCountries().OrderBy(l => l.CountryId).ToList();
 
-         
 
-            return Countries; 
+
+            return countries; 
         }
 
 

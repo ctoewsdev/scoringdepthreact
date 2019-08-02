@@ -14,7 +14,7 @@ function App() {
             <Header />
             <Switch>
                 <Route exact path="/" component={HomePage} />
-                <Route path="/season/:name" component={RegionsPage} />
+                <Route path="/season/:yearId" component={RegionsPage} />
                 <Route path="/regions" component={RegionsPage} />
                 <Route path="/league" component={LeaguesPage} />
                 <Route path="/feedback" component={FeedbackPage} />

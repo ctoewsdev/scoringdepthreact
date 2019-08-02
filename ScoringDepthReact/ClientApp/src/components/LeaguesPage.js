@@ -34,7 +34,9 @@ LeaguesPage.propTypes = {
 };
 
 function mapStateToProps(state) {
+
     return {
+       
         leagues: state.leagues
     };
 }
