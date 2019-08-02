@@ -6,8 +6,8 @@ const YearsList = ({ years }) => (
     <table className="table">
         <thead>
             <tr>
-                <th>Start</th>
-                <th>Season</th>
+                <th>Season Start</th>
+                <th>Season Length</th>
             </tr>
         </thead>
         <tbody>

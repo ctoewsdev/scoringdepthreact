@@ -38,7 +38,7 @@ class RegionsPage extends React.Component {
 
 
     componentDidMount() {
-        const { years, seasons, regions, actions } = this.props;
+        const { years, seasons, regions, countries, actions } = this.props;
 
 
         if (years.length === 0) {
@@ -66,11 +66,11 @@ class RegionsPage extends React.Component {
             });
         }
 
-        //if (countries.length === 0) {
-        //    actions.loadCountries().catch(error => {
-        //        alert("Loading countries failed" + error);
-        //    });
-        //}
+        if (countries.length === 0) {
+            actions.loadCountries().catch(error => {
+                alert("Loading countries failed" + error);
+            });
+        }
 
 
         //if (seasonsList.length === 0) {
@@ -108,15 +108,17 @@ RegionsPage.propTypes = {
     years: PropTypes.array.isRequired,
     regions: PropTypes.array.isRequired,
     seasons: PropTypes.array.isRequired,
+    countries: PropTypes.array.isRequired,
     seasonsList: PropTypes.array.isRequired,
     actions: PropTypes.object.isRequired
 };
 
 
 export function getSeasonsByYear(seasons, yearId) {
-    return seasons.filter(season => season.yearId == yearId);
- //   console.log('season by year array 2 is: ', sList);
-     //return sList; 
+    var sList = seasons.filter(season => season.yearId == yearId);
+
+
+     return sList; 
 }
 
 
@@ -136,6 +138,7 @@ function mapStateToProps(state, ownProps) {
 
     return {
         yearId: yearId,
+        countries: state.countries,
         //seasonsList: state.seasons.length === 0 ? [] : state.seasons.filter(season => season.yearId === yearId),
       //  seasonsList: seasonsList,
         seasons: seasonsList.length === 0 || state.years.length === 0 || state.regions.length === 0
@@ -144,12 +147,15 @@ function mapStateToProps(state, ownProps) {
                 return {
                     ...season,
                     yearName: state.years.find(y => y.yearId === season.yearId).name,
-                    regionName: state.regions.find(r => r.regionId === season.regionId).name
+                    regionName: state.regions.find(r => r.regionId === season.regionId).name,
+                    regionCode: state.regions.find(r => r.regionId === season.regionId).code,
+                    countryName: state.countries.find(c => c.countryId === state.regions.find(r => r.regionId === season.regionId).countryId).name
                 };
             }),
 
         years: state.years,
-        regions: state.regions
+        regions: state.regions,
+        
     };
 
 

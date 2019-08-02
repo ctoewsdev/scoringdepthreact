@@ -6,20 +6,22 @@ const RegionsList = ({ seasons }) => (
     <table className="table">
         <thead>
             <tr>
-                <th>Season</th>
+                <th>Year</th>
+                <th>Country</th>
                 <th>Region</th>
-                <th>Name</th>
+                <th>Season</th>
             </tr>
         </thead>
         <tbody>
-            {seasons.map(season => {
+            {seasons.sort((a, b) => ((a.countryName > b.countryName) || (a.regionCode > b.regionCode))  ? 1 : -1).map(season => {
                 //var region = regions.find(region => region.RegionId === season.RegionId);
                 return (
-                    <tr key={season.SeasonId}>
-                        <td>{season.seasonId}</td>
+                    <tr key={season.seasonId}>
                         <td>{season.yearName}</td>
+                        <td>{season.countryName}</td>
+                        <td>{season.regionCode}</td>
                         <td>
-                            <Link to={"/league/" + season.SeasonId}>{season.regionName}</Link>
+                            <Link to={"/league/" + season.seasonId}>{season.yearName + " " + season.regionName}</Link>
                         </td>  
                       
                     </tr>
