@@ -39,16 +39,13 @@ HomePage.propTypes = {
 };
 
 export function sortYears(years) {
-    var sortedList = years.sort((a, b) => (a.yearStart < b.yearStart) ? 1 : -1)
-    return sortedList;
+    return years.sort((a, b) => (a.yearStart < b.yearStart) ? 1 : -1)
 }
 
 
 function mapStateToProps(state) {
-
-    var sortedYears = state.years.length > 0 ? sortYears(state.years) : [];
     return {
-        years: sortedYears
+        years: state.years.length > 0 ? sortYears(state.years) : []
     };
 }
 

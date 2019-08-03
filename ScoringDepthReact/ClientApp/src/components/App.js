@@ -15,8 +15,8 @@ function App() {
             <Switch>
                 <Route exact path="/" component={HomePage} />
                 <Route path="/season/:yearId" component={RegionsPage} />
-                <Route path="/regions" component={RegionsPage} />
-                <Route path="/league" component={LeaguesPage} />
+                <Route path="/region" component={RegionsPage} />
+                <Route path="/league/:seasonId" component={LeaguesPage} />
                 <Route path="/feedback" component={FeedbackPage} />
                 <Route path="/about" component={AboutPage} />
                 <Route component={NotFoundPage} />

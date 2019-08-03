@@ -9,8 +9,8 @@ using ScoringDepthReact.Models;
 namespace ScoringDepthReact.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20190727060226_Initial")]
-    partial class Initial
+    [Migration("20190802222310_SeasonLeagueFix2")]
+    partial class SeasonLeagueFix2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -79,25 +79,6 @@ namespace ScoringDepthReact.Migrations
                     b.ToTable("League");
                 });
 
-            modelBuilder.Entity("ScoringDepthReact.Models.Domain.LeagueSeason", b =>
-                {
-                    b.Property<long>("LeagueSeasonId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<long>("LeagueId");
-
-                    b.Property<long>("YearRegionId");
-
-                    b.HasKey("LeagueSeasonId");
-
-                    b.HasIndex("LeagueId");
-
-                    b.HasIndex("YearRegionId");
-
-                    b.ToTable("LeagueSeason");
-                });
-
             modelBuilder.Entity("ScoringDepthReact.Models.Domain.Ranking", b =>
                 {
                     b.Property<long>("RankingId")
@@ -149,6 +130,25 @@ namespace ScoringDepthReact.Migrations
                     b.HasIndex("YearId");
 
                     b.ToTable("Season");
+                });
+
+            modelBuilder.Entity("ScoringDepthReact.Models.Domain.SeasonLeague", b =>
+                {
+                    b.Property<long>("SeasonLeagueId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("LeagueId");
+
+                    b.Property<long>("SeasonId");
+
+                    b.HasKey("SeasonLeagueId");
+
+                    b.HasIndex("LeagueId");
+
+                    b.HasIndex("SeasonId");
+
+                    b.ToTable("SeasonLeague");
                 });
 
             modelBuilder.Entity("ScoringDepthReact.Models.Domain.SeasonRanking", b =>
@@ -221,19 +221,6 @@ namespace ScoringDepthReact.Migrations
                     b.ToTable("Year");
                 });
 
-            modelBuilder.Entity("ScoringDepthReact.Models.Domain.LeagueSeason", b =>
-                {
-                    b.HasOne("ScoringDepthReact.Models.Domain.League", "League")
-                        .WithMany("LeagueSeasons")
-                        .HasForeignKey("LeagueId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("ScoringDepthReact.Models.Domain.Season", "YearRegion")
-                        .WithMany("LeagueSeasons")
-                        .HasForeignKey("YearRegionId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("ScoringDepthReact.Models.Domain.Region", b =>
                 {
                     b.HasOne("ScoringDepthReact.Models.Domain.Country", "Country")
@@ -245,13 +232,26 @@ namespace ScoringDepthReact.Migrations
             modelBuilder.Entity("ScoringDepthReact.Models.Domain.Season", b =>
                 {
                     b.HasOne("ScoringDepthReact.Models.Domain.Region", "Region")
-                        .WithMany("YearRegions")
+                        .WithMany("Seasons")
                         .HasForeignKey("RegionId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("ScoringDepthReact.Models.Domain.Year", "Year")
-                        .WithMany("YearRegionRefs")
+                        .WithMany("Seasons")
                         .HasForeignKey("YearId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("ScoringDepthReact.Models.Domain.SeasonLeague", b =>
+                {
+                    b.HasOne("ScoringDepthReact.Models.Domain.League", "League")
+                        .WithMany("LeagueSeasons")
+                        .HasForeignKey("LeagueId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("ScoringDepthReact.Models.Domain.Season", "Season")
+                        .WithMany("SeasonLeagues")
+                        .HasForeignKey("SeasonId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -270,7 +270,7 @@ namespace ScoringDepthReact.Migrations
 
             modelBuilder.Entity("ScoringDepthReact.Models.Domain.TeamSeason", b =>
                 {
-                    b.HasOne("ScoringDepthReact.Models.Domain.LeagueSeason", "LeagueSeason")
+                    b.HasOne("ScoringDepthReact.Models.Domain.SeasonLeague", "LeagueSeason")
                         .WithMany("TeamSeasons")
                         .HasForeignKey("LeagueSeasonId")
                         .OnDelete(DeleteBehavior.Cascade);

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ScoringDepthReact.Migrations
 {
-    public partial class Initial : Migration
+    public partial class SeasonLeagueFix2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -147,26 +147,26 @@ namespace ScoringDepthReact.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "LeagueSeason",
+                name: "SeasonLeague",
                 columns: table => new
                 {
-                    LeagueSeasonId = table.Column<long>(nullable: false)
+                    SeasonLeagueId = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    YearRegionId = table.Column<long>(nullable: false),
+                    SeasonId = table.Column<long>(nullable: false),
                     LeagueId = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_LeagueSeason", x => x.LeagueSeasonId);
+                    table.PrimaryKey("PK_SeasonLeague", x => x.SeasonLeagueId);
                     table.ForeignKey(
-                        name: "FK_LeagueSeason_League_LeagueId",
+                        name: "FK_SeasonLeague_League_LeagueId",
                         column: x => x.LeagueId,
                         principalTable: "League",
                         principalColumn: "LeagueId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_LeagueSeason_Season_YearRegionId",
-                        column: x => x.YearRegionId,
+                        name: "FK_SeasonLeague_Season_SeasonId",
+                        column: x => x.SeasonId,
                         principalTable: "Season",
                         principalColumn: "SeasonId",
                         onDelete: ReferentialAction.Cascade);
@@ -185,10 +185,10 @@ namespace ScoringDepthReact.Migrations
                 {
                     table.PrimaryKey("PK_TeamSeason", x => x.TeamSeasonId);
                     table.ForeignKey(
-                        name: "FK_TeamSeason_LeagueSeason_LeagueSeasonId",
+                        name: "FK_TeamSeason_SeasonLeague_LeagueSeasonId",
                         column: x => x.LeagueSeasonId,
-                        principalTable: "LeagueSeason",
-                        principalColumn: "LeagueSeasonId",
+                        principalTable: "SeasonLeague",
+                        principalColumn: "SeasonLeagueId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_TeamSeason_Team_TeamId",
@@ -225,16 +225,6 @@ namespace ScoringDepthReact.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_LeagueSeason_LeagueId",
-                table: "LeagueSeason",
-                column: "LeagueId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_LeagueSeason_YearRegionId",
-                table: "LeagueSeason",
-                column: "YearRegionId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Region_CountryId",
                 table: "Region",
                 column: "CountryId");
@@ -248,6 +238,16 @@ namespace ScoringDepthReact.Migrations
                 name: "IX_Season_YearId",
                 table: "Season",
                 column: "YearId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SeasonLeague_LeagueId",
+                table: "SeasonLeague",
+                column: "LeagueId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SeasonLeague_SeasonId",
+                table: "SeasonLeague",
+                column: "SeasonId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SeasonRanking_RankingId",
@@ -285,7 +285,7 @@ namespace ScoringDepthReact.Migrations
                 name: "TeamSeason");
 
             migrationBuilder.DropTable(
-                name: "LeagueSeason");
+                name: "SeasonLeague");
 
             migrationBuilder.DropTable(
                 name: "Team");

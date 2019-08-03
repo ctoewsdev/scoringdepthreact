@@ -11,26 +11,38 @@ using ScoringDepthReact.Models.ViewModels;
 namespace ScoringDepthReact.Controllers
 {
     [Route("api/[controller]")]
-    public class LeagueController : Controller
+    public class SeasonLeagueController : Controller
     {
         private readonly ICountryRepository _countryRepository;
         private readonly IRegionRepository _regionRepository;
         private readonly ILeagueRepository _leagueRepository;
-        private readonly ISeasonRepository _yearRepository;
+        private readonly ISeasonLeagueRepository _seasonLeagueRepository;
         private readonly IFeedbackRepository _feedbackRepository;
+        private readonly IYearRepository _yearRepository;
 
+        //private static List<League> Leagues = new List<League> ()
+        //{
+        //    new League() { Name = "hc-British Columbia Junior Hockey League", Code ="hc-BCHL", ImageUrl = "hc-bchl.jpg" },
+        //    new League() { Name = "hc-Pacific Junior Hockey League", Code ="hc-PJHL", ImageUrl = "hc-pjhl.jpg" }
+        //};
 
-
+        //private static List<Region> regions = new List<Region>()
+        //{
+        //    new Region() { Name = "British Columbia", Code = "BC", CountryCode="Can" },
+        //    new Region() { Name = "Alberta", Code = "AB", CountryCode="Can" },
+        //    new Region() { Name = "Saskatchewan", Code = "SK", CountryCode="Can" }
+        //};
 
         // ctor dependency injection
-        public LeagueController(ICountryRepository countryRepository, IRegionRepository regionRepository, ILeagueRepository leagueRepository, ISeasonRepository yearRepository, IFeedbackRepository feedbackRepository)
+        public SeasonLeagueController(ICountryRepository countryRepository, IRegionRepository regionRepository, ILeagueRepository leagueRepository, ISeasonLeagueRepository seasonLeagueRepository, IFeedbackRepository feedbackRepository, IYearRepository yearRepository)
         {
 
             _countryRepository = countryRepository;
             _regionRepository = regionRepository;
             _leagueRepository = leagueRepository;
-            _yearRepository = yearRepository;
+            _seasonLeagueRepository = seasonLeagueRepository;
             _feedbackRepository = feedbackRepository;
+            _yearRepository = yearRepository;
         }
 
         // [HttpGet]Get : does not require tag
@@ -61,23 +73,17 @@ namespace ScoringDepthReact.Controllers
         // [HttpGet]Get : does not require tag
         // public IActionResult Index()
         [HttpGet]
-        public List<League> GetLeagues()
+        public List<SeasonLeague> GetSeasonLeagues()
         {
-            var leagues = _leagueRepository.GetLeagues().OrderBy(l => l.LeagueId).ToList();
-            //var homeViewModel = new HomeViewModel()
-            //{
-            //    Leagues = leagues.ToList()
-            //};
+            var seasonLeague = _seasonLeagueRepository.GetSeasonLeagues().ToList();
 
-            //var leagues;
 
-           // return View(homeViewModel);
-
-           return leagues;
-           //  return leagues.ToList(); 
+            return seasonLeague;
+           
         }
 
-        
+       
+
 
         // UDEMY
         //[HttpGet]

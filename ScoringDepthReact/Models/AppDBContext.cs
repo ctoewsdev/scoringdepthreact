@@ -22,11 +22,11 @@ namespace ScoringDepthReact.Models
                 .HasKey(x => new { YearRegionId = x.SeasonId });
 
 
-            modelBuilder.Entity<LeagueSeason>()
-                .Property(x => x.LeagueSeasonId)
+            modelBuilder.Entity<SeasonLeague>()
+                .Property(x => x.SeasonLeagueId)
                 .ValueGeneratedOnAdd();
-            modelBuilder.Entity<LeagueSeason>()
-                .HasKey(x => new { x.LeagueSeasonId});
+            modelBuilder.Entity<SeasonLeague>()
+                .HasKey(x => new { x.SeasonLeagueId });
 
 
             modelBuilder.Entity<TeamSeason>()
@@ -50,7 +50,7 @@ namespace ScoringDepthReact.Models
         public DbSet<Region> Region { get; set; }
         public DbSet<Season> Season { get; set; }
         public DbSet<League> League { get; set; }
-        public DbSet<LeagueSeason> LeagueSeason { get; set; }
+        public DbSet<SeasonLeague> SeasonLeague { get; set; }
         public DbSet<Team> Team { get; set; }
         public DbSet<Ranking> Ranking { get; set; }
         public DbSet<Feedback> Feedback { get; set; }

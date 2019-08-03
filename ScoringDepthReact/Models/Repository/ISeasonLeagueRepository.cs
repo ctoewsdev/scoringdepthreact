@@ -3,9 +3,9 @@ using ScoringDepthReact.Models.Domain;
 
 namespace ScoringDepthReact.Models.Repository
 {
-    public interface ILeagueRepository
+    public interface ISeasonLeagueRepository
     {
-        IEnumerable<League> GetLeagues();
-   
+        IEnumerable<SeasonLeague> GetSeasonLeagues();
+       
     }
 }

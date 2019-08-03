@@ -10,5 +10,6 @@ export default {
     leagues: [],
     teams: [],
     rankings: [],
-    feedback: []
+    feedback: [],
+    seasonLeagues: []
 };

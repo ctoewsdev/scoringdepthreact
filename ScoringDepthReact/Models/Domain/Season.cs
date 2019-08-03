@@ -19,7 +19,7 @@ namespace ScoringDepthReact.Models.Domain
         public Region Region { get; set; }
 
         //collection navigation to linking class
-        public ICollection<LeagueSeason> LeagueSeasons { get; set; }
+        public ICollection<SeasonLeague> SeasonLeagues { get; set; }
 
     }
 }

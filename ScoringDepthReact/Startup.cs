@@ -51,6 +51,7 @@ namespace ScoringDepthReact
             services.AddTransient<ICountryRepository, CountryRepository>();
             services.AddTransient<IRegionRepository, RegionRepository>();
             services.AddTransient<ILeagueRepository, LeagueRepository>();
+            services.AddTransient<ISeasonLeagueRepository, SeasonLeagueRepository>();
             services.AddTransient<ISeasonRepository, SeasonRepository>();
             services.AddTransient<IFeedbackRepository, FeedbackRepository>();
 

@@ -15,7 +15,7 @@ namespace ScoringDepthReact.Models.Domain
 
      
         public long LeagueSeasonId { get; set; }
-        public LeagueSeason LeagueSeason { get; set; }
+        public SeasonLeague SeasonLeague { get; set; }
 
     
         public long TeamId { get; set; }

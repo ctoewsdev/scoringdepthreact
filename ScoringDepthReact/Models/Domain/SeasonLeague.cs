@@ -8,12 +8,12 @@ using Microsoft.VisualBasic.CompilerServices;
 
 namespace ScoringDepthReact.Models.Domain
 {
-    public class LeagueSeason
+    public class SeasonLeague
     {
-        public long LeagueSeasonId { get; set; }
+        public long SeasonLeagueId { get; set; }
 
-        public long YearRegionId { get; set; }
-        public Season YearRegion { get; set; }
+        public long SeasonId { get; set; }
+        public Season Season { get; set; }
  
         public long LeagueId { get; set; }
         public League League { get; set; }

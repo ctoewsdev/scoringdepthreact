@@ -14,15 +14,11 @@ namespace ScoringDepthReact.Models.Repository
             _appDbContext = appDbContext;
         }
 
-        public IEnumerable<League> GetAllLeagues()
+        public IEnumerable<League> GetLeagues()
         {
             return _appDbContext.League;
         }
 
-        public League GetLeagueById(int leagueId)
-        {
-            return _appDbContext.League.FirstOrDefault(l => l.LeagueId == leagueId);
-        }
     }
 }
 
