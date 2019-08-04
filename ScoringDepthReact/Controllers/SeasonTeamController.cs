@@ -1,12 +1,8 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using ScoringDepthReact.Common;
 using ScoringDepthReact.Models.Domain;
 using ScoringDepthReact.Models.Repository;
-using ScoringDepthReact.Models.ViewModels;
 
 namespace ScoringDepthReact.Controllers
 {
