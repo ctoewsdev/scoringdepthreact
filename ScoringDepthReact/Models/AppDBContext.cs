@@ -3,10 +3,9 @@ using ScoringDepthReact.Models.Domain;
 
 namespace ScoringDepthReact.Models
 {
-    //Interface between Models and the DB
+    //Interface between Models and the DB Session
     public class AppDbContext : DbContext
     {
-        //construct instance of options
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
             //Database.SetInitializer<AppDbContext>(new CreateDatabaseIfNotExists<AppDbContext>());
@@ -39,7 +38,7 @@ namespace ScoringDepthReact.Models
                 .HasKey(x => new { x.TeamRankingId });
         }
 
-        //define table name to be managed by EF Core
+        //SQL Server tables to be managed by EF Core
         public DbSet<Year> Year { get; set; }
         public DbSet<Country> Country { get; set; }
         public DbSet<Region> Region { get; set; }
@@ -51,6 +50,5 @@ namespace ScoringDepthReact.Models
         public DbSet<Ranking> Ranking { get; set; }
         public DbSet<TeamRanking> TeamRanking { get; set; }
         public DbSet<Feedback> Feedback { get; set; }
-
     }
 }

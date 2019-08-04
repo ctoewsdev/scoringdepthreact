@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Migrations;
 using ScoringDepthReact.Models.Domain;
 
 namespace ScoringDepthReact.Models
@@ -14,7 +10,7 @@ namespace ScoringDepthReact.Models
         {
             if (!context.Country.Any())
             {
-                //Id's added automatically
+                //Sample test data
 
                 //countries
                 var countries = new List<Country>();
