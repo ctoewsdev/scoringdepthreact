@@ -93,7 +93,6 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        //injects actions into this page component
         actions: {
             loadYears: bindActionCreators(yearActions.loadYears, dispatch),
             loadSeasons: bindActionCreators(seasonActions.loadSeasons, dispatch),

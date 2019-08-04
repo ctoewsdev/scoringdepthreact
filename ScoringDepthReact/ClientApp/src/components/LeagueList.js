@@ -18,8 +18,8 @@ const LeagueList = ({ leagues }) => (
                         <td>{league.imageUrl}</td>
                         <td>
                             <Link to={"/league/" + league.code}>{league.code}</Link>
-                        </td>                
-                        <td>{league.name}</td>                  
+                        </td>
+                        <td>{league.name}</td>
                     </tr>
                 );
             })}

@@ -9,7 +9,6 @@ function AboutPage () {
                 <p>Here I will describe the application.</p>{" "}
             </>
         );
-    
 }
 
 export default connect()(AboutPage);

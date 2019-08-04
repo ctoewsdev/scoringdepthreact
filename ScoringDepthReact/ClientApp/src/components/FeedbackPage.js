@@ -4,7 +4,6 @@ import { createFeedback } from "../redux/actions/feedbackActions";
 import PropTypes from "prop-types";
 import FeedbackForm from "./FeedbackForm";
 
-
 function FeedbackPage({ createFeedback, history, ...props }) {
     const [feedback, setFeedback] = useState({ ...props.feedback });
     const [errors, setErrors] = useState({});
@@ -40,9 +39,7 @@ function FeedbackPage({ createFeedback, history, ...props }) {
     );
 }
 
-
 FeedbackPage.propTypes = {
-    // regions: PropTypes.array.isRequired,
     feedback: PropTypes.object.isRequired,
     createFeedback: PropTypes.func.isRequired,
     history: PropTypes.func.isRequired
@@ -73,4 +70,3 @@ export default connect(
     mapStateToProps,
     mapDispatchToProps
 )(FeedbackPage);
-

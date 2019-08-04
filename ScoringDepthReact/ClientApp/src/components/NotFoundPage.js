@@ -13,5 +13,4 @@ function NotFoundPage() {
     );
 }
 
-
 export default connect()(NotFoundPage);

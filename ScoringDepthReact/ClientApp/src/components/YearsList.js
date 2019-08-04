@@ -17,7 +17,7 @@ const YearsList = ({ years }) => (
                         <td>{year.yearStart}</td>
                         <td>
                             <Link to={"/season/" + year.yearId}>{year.name}</Link>
-                        </td>                
+                        </td>
                     </tr>
                 );
             })}
