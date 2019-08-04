@@ -6,4 +6,3 @@ export function getCountries() {
     .then(handleResponse)
     .catch(handleError);
 }
-

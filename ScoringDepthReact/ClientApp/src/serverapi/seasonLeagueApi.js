@@ -6,4 +6,3 @@ export function getSeasonLeagues() {
     .then(handleResponse)
     .catch(handleError);
 }
-

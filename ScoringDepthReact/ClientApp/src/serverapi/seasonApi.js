@@ -6,6 +6,3 @@ export function getSeasons() {
     .then(handleResponse)
     .catch(handleError);
 }
-
-
-

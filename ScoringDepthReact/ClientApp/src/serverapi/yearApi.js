@@ -6,4 +6,3 @@ export function getYears() {
         .then(handleResponse)
         .catch(handleError);
 }
-

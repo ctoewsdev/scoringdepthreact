@@ -6,4 +6,3 @@ export function getLeagues() {
     .then(handleResponse)
     .catch(handleError);
 }
-

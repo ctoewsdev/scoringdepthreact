@@ -6,6 +6,3 @@ export function getRegions() {
     .then(handleResponse)
     .catch(handleError);
 }
-
-
-

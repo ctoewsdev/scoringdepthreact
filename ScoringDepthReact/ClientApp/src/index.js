@@ -10,12 +10,11 @@ import { Provider as ReduxProvider } from "react-redux";
 const store = configureStore();
 
 render(
-    //wraps entire frontend in redux
+    //wrap frontend in redux
     <ReduxProvider store={store}>
         <Router>
             <App />
         </Router>
     </ReduxProvider>,
-    document.getElementById("root") //PS has "app"
+    document.getElementById("root")
 );
-
