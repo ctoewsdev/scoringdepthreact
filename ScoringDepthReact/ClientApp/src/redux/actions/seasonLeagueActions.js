@@ -7,11 +7,9 @@ export function loadSuccess(seasonLeagues) {
 
 // thunk
 export function loadSeasonLeagues() {
-    //thunk injects 'dispatch'
     return function (dispatch) {
         return seasonLeagueApi
             .getSeasonLeagues()
-            //promise returns 
             .then(seasonLeagues => {
                 dispatch(loadSuccess(seasonLeagues));
             })

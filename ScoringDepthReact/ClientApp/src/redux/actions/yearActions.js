@@ -1,7 +1,6 @@
 ﻿import * as types from "./actionTypes";
 import * as yearApi from "../../serverapi/yearApi";
 
-
 export function loadSuccess(years) {
     return { type: types.LOAD_YEARS_SUCCESS, years };
 }
@@ -19,5 +18,3 @@ export function loadYears() {
             });
     };
 }
-
-
