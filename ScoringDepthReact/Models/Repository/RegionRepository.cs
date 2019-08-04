@@ -6,7 +6,6 @@ namespace ScoringDepthReact.Models.Repository
 {
     public class RegionRepository : IRegionRepository
     {
-
         private readonly AppDbContext _appDbContext;
 
         public RegionRepository(AppDbContext appDbContext)
@@ -14,10 +13,6 @@ namespace ScoringDepthReact.Models.Repository
             _appDbContext = appDbContext;
         }
 
-        /// <summary>
-        /// Load data into underlying DB
-        /// </summary>
-        /// <returns></returns>
         public IEnumerable<Region> GetRegions()
         {
             return _appDbContext.Region;

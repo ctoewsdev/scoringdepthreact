@@ -6,7 +6,6 @@ namespace ScoringDepthReact.Models.Repository
 {
     public class CountryRepository : ICountryRepository
     {
-
         private readonly AppDbContext _appDbContext;
 
         public CountryRepository(AppDbContext appDbContext)
@@ -14,26 +13,8 @@ namespace ScoringDepthReact.Models.Repository
             _appDbContext = appDbContext;
         }
 
-        //public CountryRepository()
-        //{
-        //    if (_countries == null)
-        //    {
-        //        InitializeCountries();
-        //    }
-        //}
-
-        //private void InitializeCountries()
-        //{
-        //    _countries = new List<Country>
-        //    {
-        //        new Country() {Id = 1, Name = "Canada", ImageUrl = "canada.jpg"},
-        //        new Country() { Id = 2, Name = "USA", ImageUrl = "usa.jpg"}
-        //    };
-        //}
-    
         public IEnumerable<Country> GetCountries()
         {
-            //populate collection from country table on DB (or DBContext if already loaded)
             return _appDbContext.Country;
         }
 
@@ -43,4 +24,3 @@ namespace ScoringDepthReact.Models.Repository
         }
     }
 }
-

@@ -6,6 +6,5 @@ namespace ScoringDepthReact.Models.Repository
     public interface ILeagueRepository
     {
         IEnumerable<League> GetLeagues();
-   
     }
 }

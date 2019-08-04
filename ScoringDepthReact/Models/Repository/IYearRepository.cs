@@ -6,6 +6,5 @@ namespace ScoringDepthReact.Models.Repository
     public interface IYearRepository
     {
         IEnumerable<Year> GetYears();
-        //Country GetYearById(int countryId);
     }
 }
