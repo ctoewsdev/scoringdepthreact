@@ -8,20 +8,14 @@ using Microsoft.VisualBasic.CompilerServices;
 
 namespace ScoringDepthReact.Models.Domain
 {
-    public class TeamSeason
-    {
-      
-        public long TeamSeasonId { get; set; }
+    public class TeamRanking
+    {     
+        public long TeamRankingId { get; set; }
+ 
+        public long SeasonTeamId { get; set; }
+        public SeasonTeam SeasonTeam { get; set; }
 
-     
-        public long LeagueSeasonId { get; set; }
-        public SeasonLeague SeasonLeague { get; set; }
-
-    
-        public long TeamId { get; set; }
-        public Team Team { get; set; }
-
-
-
+        public long RankingId { get; set; }
+        public Ranking Ranking { get; set; }
     }
 }

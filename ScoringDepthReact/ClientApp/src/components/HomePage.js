@@ -42,7 +42,6 @@ export function sortYears(years) {
     return years.sort((a, b) => (a.yearStart < b.yearStart) ? 1 : -1)
 }
 
-
 function mapStateToProps(state) {
     return {
         years: state.years.length > 0 ? sortYears(state.years) : []

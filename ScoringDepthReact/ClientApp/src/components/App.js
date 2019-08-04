@@ -2,6 +2,7 @@ import React from "react";
 import HomePage from "./HomePage";
 import LeaguesPage from "./LeaguesPage";
 import RegionsPage from "./RegionsPage";
+import RankingsPage from "./RankingsPage";
 import AboutPage from "./AboutPage";
 import FeedbackPage from "./FeedbackPage";
 import Header from "./common/Header";
@@ -15,8 +16,8 @@ function App() {
             <Switch>
                 <Route exact path="/" component={HomePage} />
                 <Route path="/season/:yearId" component={RegionsPage} />
-                <Route path="/region" component={RegionsPage} />
                 <Route path="/league/:seasonId" component={LeaguesPage} />
+                <Route path="/ranking/:seasonLeagueId" component={RankingsPage} />
                 <Route path="/feedback" component={FeedbackPage} />
                 <Route path="/about" component={AboutPage} />
                 <Route component={NotFoundPage} />

@@ -129,34 +129,34 @@ namespace ScoringDepthReact.Models
                 context.SaveChanges();
 
                 //TeamSeason
-                var teamSeasons = new List<TeamSeason>();
-                var ts1 = (new TeamSeason { SeasonLeague = ls3, LeagueSeasonId = ls3.SeasonLeagueId, TeamId = cents.TeamId });
-                var ts2 = (new TeamSeason { LeagueSeasonId = ls1.SeasonLeagueId, TeamId = trappers.TeamId });
-                var ts3 = (new TeamSeason { LeagueSeasonId = ls1.SeasonLeagueId, TeamId = pilots.TeamId });
-                var ts4 = (new TeamSeason { LeagueSeasonId = ls3.SeasonLeagueId, TeamId = trappers.TeamId });
-                var ts5 = (new TeamSeason { LeagueSeasonId = ls3.SeasonLeagueId, TeamId = pilots.TeamId });
-                var ts6 = (new TeamSeason { LeagueSeasonId = ls5.SeasonLeagueId, TeamId = storm.TeamId });
-                var ts7 = (new TeamSeason { LeagueSeasonId = ls6.SeasonLeagueId, TeamId = blazers.TeamId });
-                teamSeasons.Add(ts1);
-                teamSeasons.Add(ts2);
-                teamSeasons.Add(ts3);
-                teamSeasons.Add(ts4);
-                teamSeasons.Add(ts5);
-                teamSeasons.Add(ts6);
-                teamSeasons.Add(ts7);
-                teamSeasons.ForEach(x => context.TeamSeason.Add(x));
+                var seasonTeams = new List<SeasonTeam>();
+                var ts1 = (new SeasonTeam { SeasonLeague = ls3, SeasonLeagueId = ls3.SeasonLeagueId, TeamId = cents.TeamId });
+                var ts2 = (new SeasonTeam { SeasonLeagueId = ls1.SeasonLeagueId, TeamId = trappers.TeamId });
+                var ts3 = (new SeasonTeam { SeasonLeagueId = ls1.SeasonLeagueId, TeamId = pilots.TeamId });
+                var ts4 = (new SeasonTeam { SeasonLeagueId = ls3.SeasonLeagueId, TeamId = trappers.TeamId });
+                var ts5 = (new SeasonTeam { SeasonLeagueId = ls3.SeasonLeagueId, TeamId = pilots.TeamId });
+                var ts6 = (new SeasonTeam { SeasonLeagueId = ls5.SeasonLeagueId, TeamId = storm.TeamId });
+                var ts7 = (new SeasonTeam { SeasonLeagueId = ls6.SeasonLeagueId, TeamId = blazers.TeamId });
+                seasonTeams.Add(ts1);
+                seasonTeams.Add(ts2);
+                seasonTeams.Add(ts3);
+                seasonTeams.Add(ts4);
+                seasonTeams.Add(ts5);
+                seasonTeams.Add(ts6);
+                seasonTeams.Add(ts7);
+                seasonTeams.ForEach(x => context.SeasonTeam.Add(x));
                 context.SaveChanges();
 
                 //Ranking
                 var rankings = new List<Ranking>();
-                var r1 = (new Ranking { Period = 1, Sdi = 4.302 });
-                var r2 = (new Ranking { Period = 1, Sdi = 4.002 });
-                var r3 = (new Ranking { Period = 2, Sdi = 3.918 });
-                var r4 = (new Ranking { Period = 2, Sdi = 4.249 });
-                var r5 = (new Ranking { Period = 3, Sdi = 3.621 });
-                var r6 = (new Ranking { Period = 3, Sdi = 4.355 });
-                var r7 = (new Ranking { Period = 4, Sdi = 3.337 });
-                var r8 = (new Ranking { Period = 4, Sdi = 4.489 });
+                var r1 = (new Ranking { Period = 1, SDI = 4.302 });
+                var r2 = (new Ranking { Period = 1, SDI = 4.002 });
+                var r3 = (new Ranking { Period = 2, SDI = 3.918 });
+                var r4 = (new Ranking { Period = 2, SDI = 4.249 });
+                var r5 = (new Ranking { Period = 3, SDI = 3.621 });
+                var r6 = (new Ranking { Period = 3, SDI = 4.355 });
+                var r7 = (new Ranking { Period = 4, SDI = 3.337 });
+                var r8 = (new Ranking { Period = 4, SDI = 4.489 });
                 rankings.Add(r1);
                 rankings.Add(r2);
                 rankings.Add(r3);
@@ -168,23 +168,24 @@ namespace ScoringDepthReact.Models
                 context.SaveChanges();
 
                 //TeamRanking
-                var seasonRankings = new List<SeasonRanking>();
-                var sr1 = (new SeasonRanking { TeamSeasonId = ts4.TeamSeasonId, RankingId = r2.RankingId });
-                var sr2 = (new SeasonRanking { TeamSeasonId = ts5.TeamSeasonId, RankingId = r1.RankingId });
-                var sr3 = (new SeasonRanking { TeamSeasonId = ts4.TeamSeasonId, RankingId = r4.RankingId });
-                var sr4 = (new SeasonRanking { TeamSeasonId = ts5.TeamSeasonId, RankingId = r3.RankingId });
-                var sr5 = (new SeasonRanking { TeamSeasonId = ts4.TeamSeasonId, RankingId = r6.RankingId });
-                var sr6 = (new SeasonRanking { TeamSeasonId = ts5.TeamSeasonId, RankingId = r5.RankingId });
-                var sr7 = (new SeasonRanking { TeamSeasonId = ts4.TeamSeasonId, RankingId = r8.RankingId });
-                var sr8 = (new SeasonRanking { TeamSeasonId = ts5.TeamSeasonId, RankingId = r7.RankingId });
-                seasonRankings.Add(sr2);
-                seasonRankings.Add(sr3);
-                seasonRankings.Add(sr4);
-                seasonRankings.Add(sr5);
-                seasonRankings.Add(sr6);
-                seasonRankings.Add(sr7);
-                seasonRankings.Add(sr8);
-                seasonRankings.ForEach(x => context.SeasonRanking.Add(x));
+                var teamRankings = new List<TeamRanking>();
+                var sr1 = (new TeamRanking { SeasonTeamId = ts4.SeasonTeamId, RankingId = r2.RankingId });
+                var sr2 = (new TeamRanking { SeasonTeamId = ts5.SeasonTeamId, RankingId = r1.RankingId });
+                var sr3 = (new TeamRanking { SeasonTeamId = ts4.SeasonTeamId, RankingId = r4.RankingId });
+                var sr4 = (new TeamRanking { SeasonTeamId = ts5.SeasonTeamId, RankingId = r3.RankingId });
+                var sr5 = (new TeamRanking { SeasonTeamId = ts4.SeasonTeamId, RankingId = r6.RankingId });
+                var sr6 = (new TeamRanking { SeasonTeamId = ts5.SeasonTeamId, RankingId = r5.RankingId });
+                var sr7 = (new TeamRanking { SeasonTeamId = ts4.SeasonTeamId, RankingId = r8.RankingId });
+                var sr8 = (new TeamRanking { SeasonTeamId = ts5.SeasonTeamId, RankingId = r7.RankingId });
+                teamRankings.Add(sr1);
+                teamRankings.Add(sr2);
+                teamRankings.Add(sr3);
+                teamRankings.Add(sr4);
+                teamRankings.Add(sr5);
+                teamRankings.Add(sr6);
+                teamRankings.Add(sr7);
+                teamRankings.Add(sr8);
+                teamRankings.ForEach(x => context.TeamRanking.Add(x));
                 context.SaveChanges();
             }
         }

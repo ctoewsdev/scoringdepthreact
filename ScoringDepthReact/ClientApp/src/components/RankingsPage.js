@@ -6,15 +6,43 @@ import * as regionActions from "../redux/actions/regionActions";
 import * as countryActions from "../redux/actions/countryActions";
 import * as leagueActions from "../redux/actions/leagueActions";
 import * as seasonLeagueActions from "../redux/actions/seasonLeagueActions";
+import * as teamActions from "../redux/actions/teamActions";
+import * as seasonTeamActions from "../redux/actions/seasonTeamActions";
+import * as teamRankingActions from "../redux/actions/teamRankingActions";
+import * as rankingActions from "../redux/actions/rankingActions";
 import { bindActionCreators } from "redux";
 import PropTypes from "prop-types";
 import LeaguesList from './LeaguesList';
 import { Link } from "react-router-dom";
 
-class LeaguesPage extends React.Component {
+class RankingsPage extends React.Component {
 
     componentDidMount() {
-        const { years, seasons, regions, countries, leagues, seasonLeagues, actions } = this.props;
+        const { years, seasons, regions, countries, leagues, seasonLeagues, teams, seasonTeams, TeamRankings, rankings, actions } = this.props;
+
+        if (teams.length === 0) {
+            actions.loadTeams().catch(error => {
+                alert("Loading teams failed" + error);
+            });
+        }
+
+        if (seasonTeams.length === 0) {
+            actions.loadSeasonTeams().catch(error => {
+                alert("Loading seasonTeams failed" + error);
+            });
+        }
+
+        if (TeamRankings.length === 0) {
+            actions.loadTeamRankings().catch(error => {
+                alert("Loading teamRankings failed" + error);
+            });
+        }
+
+        if (rankings.length === 0) {
+            actions.loadRankings().catch(error => {
+                alert("Loading rankings failed" + error);
+            });
+        }
 
         if (leagues.length === 0) {
             actions.loadLeagues().catch(error => {
@@ -27,7 +55,6 @@ class LeaguesPage extends React.Component {
                 alert("Loading seasonLeagues failed" + error);
             });
         }
-
 
         if (years.length === 0) {
             actions.loadYears().catch(error => {
@@ -58,18 +85,21 @@ class LeaguesPage extends React.Component {
     render() {
         return (
             <>
-                <h1 class="text-center">Leagues</h1>
-                <h2 class="text-center">Please select a league</h2>
+                <h1 class="text-center">League Rankings</h1>
                 <h3 class="text-center">
-                    <Link to={"/season/" + this.props.yearId}>{"Select a different region"}</Link>
+                    <Link to={"/league/" + this.props.seasonId}>{"Go back to select a different league"}</Link>
                 </h3>
-                <LeaguesList seasonLeagues={this.props.seasonLeagues} />
+                <SeasonTeamsList seasonTeams{this.props.seasonTeams} />
             </>
         );
     }
 }
 
-LeaguesPage.propTypes = {
+RankingsPage.propTypes = {
+    teams: PropTypes.array.isRequired,
+    rankings: PropTypes.array.isRequired,
+    seasonTeams: PropTypes.array.isRequired,
+    teamRankings: PropTypes.array.isRequired,
     years: PropTypes.array.isRequired,
     regions: PropTypes.array.isRequired,
     seasons: PropTypes.array.isRequired,
@@ -80,30 +110,31 @@ LeaguesPage.propTypes = {
 };
 
 
-export function getSeasonLeaguesBySeasonId(seasonLeagues, seasonId) {
-    var seasonLeaguesList = seasonLeagues.filter(seasonLeague => seasonLeague.seasonId == seasonId);
-    return seasonLeaguesList;
+export function getSeasonTeamsBySeasonLeagueId(seasonTeams, seasonLeagueId) {
+    var seasonTeamsList = seasonTeams.filter(seasonTeam => seasonTeam.seasonLeagueId == seasonLeagueId);
+    return seasonTeamsList;
 }
 
-export function getYearId(seasons, seasonId) {
-    return seasons.find(s => s.seasonId == seasonId).yearId;
+export function getSeasonId(seasonLeagues, seasonLeagueId) {
+    return seasonLeagues.find(s => s.seasonLeagueId == seasonLeagueId).seasonId;
 }
 
 
 function mapStateToProps(state, ownProps) {
 
-    const seasonId = ownProps.match.params.seasonId;
+    const seasonLeagueId = ownProps.match.params.seasonLeagueId;
 
-    //create and ship yearId for back navigation
-    const yearId = state.seasons.length > 0 ? getYearId(state.seasons, seasonId) : {};
+    //create and ship seasonId for back navigation
+    const seasonId = state.seasonLeagues.length > 0 ? getSeasonId(state.seasonLeagues, seasonLeagueId) : {};
 
-    var seasonsLeaguesList = state.seasonLeagues.length > 0 ? getSeasonLeaguesBySeasonId(state.seasonLeagues, seasonId) : [];
+    var seasonTeamsList = state.seasonTeams.length > 0 ? getSeasonTeamsBySeasonLeagueId(state.seasonTeams, seasonLeagueId) : [];
 
     return {
-        yearId,
-        seasonLeagues: seasonsLeaguesList.length === 0 || state.years.length === 0 || state.seasons.length === 0 || state.countries.length === 0 || state.leagues.length === 0 || state.regions.length === 0
+        seasonId,
+
+        seasonTeams: seasonsLeaguesList.length === 0 || state.years.length === 0 || state.seasons.length === 0 || state.countries.length === 0 || state.leagues.length === 0 || state.regions.length === 0
             ? []
-            : seasonsLeaguesList.map(seasonLeague => {
+            : seasonTeamsList.map(seasonLeague => {
                 return {
                     ...seasonLeague,
                     yearName: state.years.find(y => y.yearId === state.seasons.find(s => s.seasonId === seasonLeague.seasonId).yearId).name,
@@ -119,7 +150,7 @@ function mapStateToProps(state, ownProps) {
         regions: state.regions,
         leagues: state.leagues,
         seasons: state.seasons,
-        countries: state.countriesEastTitle
+        countries: state.countries
     };
 }
 
@@ -140,6 +171,6 @@ function mapDispatchToProps(dispatch) {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(LeaguesPage);
+)(RankingsPage);
 
 

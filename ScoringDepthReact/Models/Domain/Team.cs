@@ -14,6 +14,6 @@ namespace ScoringDepthReact.Models.Domain
         public string ImageUrl { get; set; }
 
         //collection navigation to linking class
-        public ICollection<TeamSeason> TeamSeasonRefIds { get; set; }
+        public ICollection<SeasonTeam> SeasonTeams { get; set; }
     }
 }

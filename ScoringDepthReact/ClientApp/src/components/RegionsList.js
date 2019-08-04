@@ -35,7 +35,4 @@ RegionsList.propTypes = {
     seasons: PropTypes.array.isRequired,
 };
 
-
-
-
 export default RegionsList;

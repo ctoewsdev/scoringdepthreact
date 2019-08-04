@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-const LeaguesList = ({ seasonLeagues }) => (
+const SeasonTeamsList = ({ seasonTeams }) => (
     <table className="table">
         <thead>
             <tr>
@@ -14,7 +14,7 @@ const LeaguesList = ({ seasonLeagues }) => (
             </tr>
         </thead>
         <tbody>
-            {seasonLeagues.sort((a, b) => (a.leagueName > b.leagueName)  ? 1 : -1).map(seasonLeagues => {
+            {seasonTeams.sort((a, b) => (a.leagueName > b.leagueName)  ? 1 : -1).map(seasonLeagues => {
                 //var region = regions.find(region => region.RegionId === season.RegionId);
                 return (
                     <tr key={seasonLeagues.seasonLeagueId}>
@@ -32,8 +32,8 @@ const LeaguesList = ({ seasonLeagues }) => (
     </table>
 );
 
-LeaguesList.propTypes = {
-    seasonLeagues: PropTypes.array.isRequired,
+SeasonTeamsList.propTypes = {
+    seasonTeams: PropTypes.array.isRequired,
 };
 
-export default LeaguesList;
+export default SeasonTeamsList;

@@ -14,7 +14,6 @@ class RegionsPage extends React.Component {
     componentDidMount() {
         const { years, seasons, regions, countries, actions } = this.props;
 
-
         if (years.length === 0) {
             actions.loadYears().catch(error => {
                 alert("Loading years failed" + error);
@@ -27,13 +26,6 @@ class RegionsPage extends React.Component {
             });
         }
 
-        //if (seasons.length === 0) {
-        //    actions.loadSeasonsByYear().catch(error => {
-        //        alert("Loading seasons by year failed" + error);
-        //    });
-        //}
-
-
         if (regions.length === 0) {
             actions.loadRegions().catch(error => {
                 alert("Loading regions failed" + error);
@@ -45,27 +37,7 @@ class RegionsPage extends React.Component {
                 alert("Loading countries failed" + error);
             });
         }
-
-
-        //if (seasonsList.length === 0) {
-        //    seasonsList = [];
-        //}
-
-
     }
-
-    //setSeasonName(name) {
-    //this.setSeasonName(seasonName);
-    //  this.setState({ seasonName: name })
-    // this.setState({ [state.seasonName]: state.year.name });
-    //}
-
-    //setYearId(yearId) {
-    //this.setSeasonName(seasonName);
-    // this.setState({ yearId: yearId })
-    // this.setState({ [state.seasonName]: state.year.name });
-    // }
-
 
     render() {
         return (
@@ -89,28 +61,16 @@ RegionsPage.propTypes = {
     actions: PropTypes.object.isRequired
 };
 
-
 export function getSeasonsByYear(seasons, yearId) {
     var sList = seasons.filter(season => season.yearId == yearId);
-
-
     return sList;
 }
-
 
 function mapStateToProps(state, ownProps) {
 
     const yearId = ownProps.match.params.yearId;
 
     var seasonsList = state.seasons.length > 0 ? getSeasonsByYear(state.seasons, yearId) : [];
-
-
-
-    //state.seasons.filter(season => season.yearId === yearId);
-    //console.log('seasonsList array is: ', seasonsList);
-
-    //var year = getSeasonName(state.years, yearId);
-    //setSeasonName(year.name);
 
     return {
         yearId: yearId,
@@ -124,10 +84,8 @@ function mapStateToProps(state, ownProps) {
                     regionName: state.regions.find(r => r.regionId === season.regionId).name,
                     regionCode: state.regions.find(r => r.regionId === season.regionId).code,
                     countryName: state.countries.find(c => c.countryId === state.regions.find(r => r.regionId === season.regionId).countryId).name,
-
                 };
             }),
-
         years: state.years,
         regions: state.regions,
     };
