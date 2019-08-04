@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace ScoringDepthReact.Models.Domain
 {
@@ -13,12 +8,11 @@ namespace ScoringDepthReact.Models.Domain
         public string Name { get; set; }
         public string Code { get; set; }
 
-      
+        //foreign key to get Country data
         public long CountryId { get; set; }
         public Country Country { get; set; }
 
         //collection navigation to linking class
         public ICollection<Season> Seasons { get; set; }
-
     }
 }

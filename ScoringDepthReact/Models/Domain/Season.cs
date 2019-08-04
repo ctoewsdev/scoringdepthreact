@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.VisualBasic.CompilerServices;
+﻿using System.Collections.Generic;
 
 namespace ScoringDepthReact.Models.Domain
 {
+    /// <summary>
+    /// Linking Year and Region
+    /// </summary>
     public class Season
     {
         public long SeasonId { get; set; }
@@ -20,6 +17,5 @@ namespace ScoringDepthReact.Models.Domain
 
         //collection navigation to linking class
         public ICollection<SeasonLeague> SeasonLeagues { get; set; }
-
     }
 }

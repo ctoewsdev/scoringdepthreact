@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
-
-namespace ScoringDepthReact.Models.Domain
+﻿namespace ScoringDepthReact.Models.Domain
 {
     public class Feedback
     {
-    
         public long FeedbackId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -17,6 +10,5 @@ namespace ScoringDepthReact.Models.Domain
         public string Message { get; set; }
         public bool ContactMe { get; set; }
         public bool IsProcessed { get; set; }
-
     }
 }

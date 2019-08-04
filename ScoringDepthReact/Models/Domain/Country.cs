@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ScoringDepthReact.Models.Repository;
+﻿using System.Collections.Generic;
 
 namespace ScoringDepthReact.Models.Domain
 {
@@ -15,6 +11,5 @@ namespace ScoringDepthReact.Models.Domain
 
         //collection navigation to linking class
         public ICollection<Region> RegionRefIds { get; set; }
-
     }
 }

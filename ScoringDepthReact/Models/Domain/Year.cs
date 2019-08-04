@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace ScoringDepthReact.Models.Domain
 {
@@ -12,10 +8,7 @@ namespace ScoringDepthReact.Models.Domain
         public int YearStart { get; set; }
         public string Name { get; set; }
 
-
         //collection navigation to linking class
         public ICollection<Season> Seasons { get; set; }
-
-
     }
 }
