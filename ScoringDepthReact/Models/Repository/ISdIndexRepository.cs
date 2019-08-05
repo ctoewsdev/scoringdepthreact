@@ -3,8 +3,8 @@ using ScoringDepthReact.Models.Domain;
 
 namespace ScoringDepthReact.Models.Repository
 {
-    public interface IRankingRepository
+    public interface ISdIndexRepository
     {
-        IEnumerable<Ranking> GetRankings();
+        IEnumerable<SdIndex> GetSdIndices();
     }
 }

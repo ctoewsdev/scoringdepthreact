@@ -3,18 +3,18 @@ using ScoringDepthReact.Models.Domain;
 
 namespace ScoringDepthReact.Models.Repository
 {
-    public class RankingRepository : IRankingRepository
+    public class SdIndexRepository : ISdIndexRepository
     {
         private readonly AppDbContext _appDbContext;
 
-        public RankingRepository(AppDbContext appDbContext)
+        public SdIndexRepository(AppDbContext appDbContext)
         {
             _appDbContext = appDbContext;
         }
 
-        public IEnumerable<Ranking> GetRankings()
+        public IEnumerable<SdIndex> GetSdIndices()
         {
-            return _appDbContext.Ranking;
+            return _appDbContext.SdIndex;
         }
     }
 }

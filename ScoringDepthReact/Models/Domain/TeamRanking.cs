@@ -1,16 +1,22 @@
-﻿namespace ScoringDepthReact.Models.Domain
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace ScoringDepthReact.Models.Domain
 {
     /// <summary>
-    /// Linking SeasonTeam and Ranking
+    /// Linking SeasonRanking, Team and SdIndex
     /// </summary>
     public class TeamRanking
     {
         public long TeamRankingId { get; set; }
 
-        public long SeasonTeamId { get; set; }
-        public SeasonTeam SeasonTeam { get; set; }
+        public long SeasonRankingId { get; set; }
+        public SeasonRanking SeasonRanking { get; set; }
 
-        public long RankingId { get; set; }
-        public Ranking Ranking { get; set; }
+        public long TeamId { get; set; }
+        public Team Team { get; set; }
+
+    
+        public long SdIndexId { get; set; }
+        public SdIndex SdIndex { get; set; }
     }
 }

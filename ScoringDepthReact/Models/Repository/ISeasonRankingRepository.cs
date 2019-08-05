@@ -3,8 +3,8 @@ using ScoringDepthReact.Models.Domain;
 
 namespace ScoringDepthReact.Models.Repository
 {
-    public interface ISeasonTeamRepository
+    public interface ISeasonRankingRepository
     {
-        IEnumerable<SeasonTeam> GetSeasonTeams();
+        IEnumerable<SeasonRanking> GetSeasonRankings();
     }
 }

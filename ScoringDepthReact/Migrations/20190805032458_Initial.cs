@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ScoringDepthReact.Migrations
 {
-    public partial class Intial : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -57,17 +57,16 @@ namespace ScoringDepthReact.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Ranking",
+                name: "SdIndex",
                 columns: table => new
                 {
-                    RankingId = table.Column<long>(nullable: false)
+                    SdIndexId = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Period = table.Column<int>(nullable: false),
-                    SDI = table.Column<double>(nullable: false)
+                    Index = table.Column<double>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Ranking", x => x.RankingId);
+                    table.PrimaryKey("PK_SdIndex", x => x.SdIndexId);
                 });
 
             migrationBuilder.CreateTable(
@@ -76,13 +75,26 @@ namespace ScoringDepthReact.Migrations
                 {
                     TeamId = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: true),
-                    Code = table.Column<string>(nullable: true),
+                    GeographyName = table.Column<string>(nullable: true),
+                    TeamName = table.Column<string>(nullable: true),
                     ImageUrl = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Team", x => x.TeamId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "WeekPeriod",
+                columns: table => new
+                {
+                    WeekPeriodId = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_WeekPeriod", x => x.WeekPeriodId);
                 });
 
             migrationBuilder.CreateTable(
@@ -173,28 +185,28 @@ namespace ScoringDepthReact.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "SeasonTeam",
+                name: "SeasonRanking",
                 columns: table => new
                 {
-                    SeasonTeamId = table.Column<long>(nullable: false)
+                    SeasonRankingId = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     SeasonLeagueId = table.Column<long>(nullable: false),
-                    TeamId = table.Column<long>(nullable: false)
+                    WeekPeriodId = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SeasonTeam", x => x.SeasonTeamId);
+                    table.PrimaryKey("PK_SeasonRanking", x => x.SeasonRankingId);
                     table.ForeignKey(
-                        name: "FK_SeasonTeam_SeasonLeague_SeasonLeagueId",
+                        name: "FK_SeasonRanking_SeasonLeague_SeasonLeagueId",
                         column: x => x.SeasonLeagueId,
                         principalTable: "SeasonLeague",
                         principalColumn: "SeasonLeagueId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_SeasonTeam_Team_TeamId",
-                        column: x => x.TeamId,
-                        principalTable: "Team",
-                        principalColumn: "TeamId",
+                        name: "FK_SeasonRanking_WeekPeriod_WeekPeriodId",
+                        column: x => x.WeekPeriodId,
+                        principalTable: "WeekPeriod",
+                        principalColumn: "WeekPeriodId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -204,23 +216,30 @@ namespace ScoringDepthReact.Migrations
                 {
                     TeamRankingId = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    SeasonTeamId = table.Column<long>(nullable: false),
-                    RankingId = table.Column<long>(nullable: false)
+                    SeasonRankingId = table.Column<long>(nullable: false),
+                    TeamId = table.Column<long>(nullable: false),
+                    SdIndexId = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TeamRanking", x => x.TeamRankingId);
                     table.ForeignKey(
-                        name: "FK_TeamRanking_Ranking_RankingId",
-                        column: x => x.RankingId,
-                        principalTable: "Ranking",
-                        principalColumn: "RankingId",
+                        name: "FK_TeamRanking_SdIndex_SdIndexId",
+                        column: x => x.SdIndexId,
+                        principalTable: "SdIndex",
+                        principalColumn: "SdIndexId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_TeamRanking_SeasonTeam_SeasonTeamId",
-                        column: x => x.SeasonTeamId,
-                        principalTable: "SeasonTeam",
-                        principalColumn: "SeasonTeamId",
+                        name: "FK_TeamRanking_SeasonRanking_SeasonRankingId",
+                        column: x => x.SeasonRankingId,
+                        principalTable: "SeasonRanking",
+                        principalColumn: "SeasonRankingId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_TeamRanking_Team_TeamId",
+                        column: x => x.TeamId,
+                        principalTable: "Team",
+                        principalColumn: "TeamId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -250,24 +269,29 @@ namespace ScoringDepthReact.Migrations
                 column: "SeasonId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SeasonTeam_SeasonLeagueId",
-                table: "SeasonTeam",
+                name: "IX_SeasonRanking_SeasonLeagueId",
+                table: "SeasonRanking",
                 column: "SeasonLeagueId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SeasonTeam_TeamId",
-                table: "SeasonTeam",
+                name: "IX_SeasonRanking_WeekPeriodId",
+                table: "SeasonRanking",
+                column: "WeekPeriodId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TeamRanking_SdIndexId",
+                table: "TeamRanking",
+                column: "SdIndexId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TeamRanking_SeasonRankingId",
+                table: "TeamRanking",
+                column: "SeasonRankingId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TeamRanking_TeamId",
+                table: "TeamRanking",
                 column: "TeamId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TeamRanking_RankingId",
-                table: "TeamRanking",
-                column: "RankingId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TeamRanking_SeasonTeamId",
-                table: "TeamRanking",
-                column: "SeasonTeamId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -279,16 +303,19 @@ namespace ScoringDepthReact.Migrations
                 name: "TeamRanking");
 
             migrationBuilder.DropTable(
-                name: "Ranking");
+                name: "SdIndex");
 
             migrationBuilder.DropTable(
-                name: "SeasonTeam");
+                name: "SeasonRanking");
+
+            migrationBuilder.DropTable(
+                name: "Team");
 
             migrationBuilder.DropTable(
                 name: "SeasonLeague");
 
             migrationBuilder.DropTable(
-                name: "Team");
+                name: "WeekPeriod");
 
             migrationBuilder.DropTable(
                 name: "League");

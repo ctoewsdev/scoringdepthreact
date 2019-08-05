@@ -17,7 +17,7 @@ namespace ScoringDepthReact.Models
                 .Property(x => x.SeasonId)
                 .ValueGeneratedOnAdd();
             modelBuilder.Entity<Season>()
-                .HasKey(x => new { YearRegionId = x.SeasonId });
+                .HasKey(x => new { x.SeasonId });
 
             modelBuilder.Entity<SeasonLeague>()
                 .Property(x => x.SeasonLeagueId)
@@ -25,17 +25,30 @@ namespace ScoringDepthReact.Models
             modelBuilder.Entity<SeasonLeague>()
                 .HasKey(x => new { x.SeasonLeagueId });
 
-            modelBuilder.Entity<SeasonTeam>()
-                .Property(x => x.SeasonTeamId)
+            modelBuilder.Entity<SeasonRanking>()
+                .Property(x => x.SeasonRankingId)
                 .ValueGeneratedOnAdd();
-            modelBuilder.Entity<SeasonTeam>()
-                .HasKey(x => new { x.SeasonTeamId });
+            modelBuilder.Entity<SeasonRanking>()
+                .HasKey(x => new { x.SeasonRankingId });
+
+            //    modelBuilder.Entity<TeamRanking>(entity => 
+
+            //        entity.HasOne(d. => d.)
+            //});
+
+            //modelBuilder.Entity<TeamRanking>()
+            //    .HasOne(p => p.SdIndex)
+            //    .WithMany(b => b.TeamRankings)
+            //    .HasForeignKey(p => p.SdIndex);
+
+
 
             modelBuilder.Entity<TeamRanking>()
                 .Property(x => x.TeamRankingId)
-                .ValueGeneratedOnAdd();
+               .ValueGeneratedOnAdd();
             modelBuilder.Entity<TeamRanking>()
-                .HasKey(x => new { x.TeamRankingId });
+               .HasKey(x => new { x.TeamRankingId });
+
         }
 
         //SQL Server tables to be managed by EF Core
@@ -45,10 +58,11 @@ namespace ScoringDepthReact.Models
         public DbSet<Season> Season { get; set; }
         public DbSet<League> League { get; set; }
         public DbSet<SeasonLeague> SeasonLeague { get; set; }
-        public DbSet<SeasonTeam> SeasonTeam { get; set; }
+        public DbSet<SeasonRanking> SeasonRanking { get; set; }
         public DbSet<Team> Team { get; set; }
-        public DbSet<Ranking> Ranking { get; set; }
+        public DbSet<SdIndex> SdIndex { get; set; }
         public DbSet<TeamRanking> TeamRanking { get; set; }
+        public DbSet<WeekPeriod> WeekPeriod { get; set; }
         public DbSet<Feedback> Feedback { get; set; }
     }
 }

@@ -7,5 +7,7 @@ export default {
     teams: [],
     rankings: [],
     feedback: [],
-    seasonLeagues: []
+    seasonLeagues: [],
+    seasontTeams: [],
+    teamRankings: []
 };

@@ -1,17 +1,17 @@
 ﻿import * as types from "./actionTypes";
-import * as seasonApi from "../../serverapi/seasonApi";
+import * as teamApi from "../../serverapi/teamApi";
 
 export function loadSuccess(seasons) {
-    return { type: types.LOAD_SEASONS_SUCCESS, seasons };
+    return { type: types.LOAD_TEAMS_SUCCESS, teams };
 }
 
 // thunk
-export function loadSeasons() {
+export function loadTeams() {
     return function (dispatch) {
-        return seasonApi
-            .getSeasons()
-            .then(seasons => {
-                dispatch(loadSuccess(seasons));
+        return teamApi
+            .getTeams()
+            .then(teams => {
+                dispatch(loadSuccess(teams));
             })
             .catch(error => {
                 throw error;

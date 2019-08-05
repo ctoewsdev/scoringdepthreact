@@ -12,7 +12,7 @@ import * as teamRankingActions from "../redux/actions/teamRankingActions";
 import * as rankingActions from "../redux/actions/rankingActions";
 import { bindActionCreators } from "redux";
 import PropTypes from "prop-types";
-import LeaguesList from './LeaguesList';
+import SeasonTeamList from './SeasonTeamList';
 import { Link } from "react-router-dom";
 
 class RankingsPage extends React.Component {
@@ -127,6 +127,7 @@ function mapStateToProps(state, ownProps) {
     //create and ship seasonId for back navigation
     const seasonId = state.seasonLeagues.length > 0 ? getSeasonId(state.seasonLeagues, seasonLeagueId) : {};
 
+    //get list of teams for only the selected seasonLeague
     var seasonTeamsList = state.seasonTeams.length > 0 ? getSeasonTeamsBySeasonLeagueId(state.seasonTeams, seasonLeagueId) : [];
 
     return {
@@ -134,10 +135,12 @@ function mapStateToProps(state, ownProps) {
 
         seasonTeams: seasonsLeaguesList.length === 0 || state.years.length === 0 || state.seasons.length === 0 || state.countries.length === 0 || state.leagues.length === 0 || state.regions.length === 0
             ? []
-            : seasonTeamsList.map(seasonLeague => {
+            : seasonTeamsList.map(seasonTeam => {
                 return {
-                    ...seasonLeague,
-                    yearName: state.years.find(y => y.yearId === state.seasons.find(s => s.seasonId === seasonLeague.seasonId).yearId).name,
+                    ...seasonTeam,
+                    //yearName: state.years.find(y => y.yearId === state.seasons.find(s => s.seasonId === seasonLeague.seasonId).yearId).name,
+                    teamName: state.teams.find(t => t.teamId === seasonTeam.teamId).name,
+                    period: 
 
                     regionName: state.regions.find(r => r.regionId === state.seasons.find(s => s.seasonId === seasonLeague.seasonId).regionId).name,
                     leagueCode: state.leagues.find(l => l.leagueId === seasonLeague.leagueId).code,
@@ -163,7 +166,11 @@ function mapDispatchToProps(dispatch) {
             loadCountries: bindActionCreators(countryActions.loadCountries, dispatch),
             loadRegions: bindActionCreators(regionActions.loadRegions, dispatch),
             loadSeasonLeagues: bindActionCreators(seasonLeagueActions.loadSeasonLeagues, dispatch),
-            loadLeagues: bindActionCreators(leagueActions.loadLeagues, dispatch)
+            loadLeagues: bindActionCreators(leagueActions.loadLeagues, dispatch),
+            loadTeams: bindActionCreators(teamActions.loadTeams, dispatch),
+            loadSeasonTeams: bindActionCreators(seasonTeamActions.loadSeasonTeams, dispatch),
+            loadTeamRankings: bindActionCreators(teamRankingActions.loadTeamRankings, dispatch),
+            loadRankings: bindActionCreators(rankingActions.loadRankings, dispatch)
         }
     };
 }

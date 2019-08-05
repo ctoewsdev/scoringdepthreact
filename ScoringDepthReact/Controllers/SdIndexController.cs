@@ -7,20 +7,19 @@ using ScoringDepthReact.Models.Repository;
 namespace ScoringDepthReact.Controllers
 {
     [Route("api/[controller]")]
-    public class RankingController : Controller
+    public class SdIndexController : Controller
     {
-        private readonly IRankingRepository _rankingRepository;
+        private readonly ISdIndexRepository _rankingRepository;
 
-        public RankingController(IRankingRepository rankingRepository)
+        public SdIndexController(ISdIndexRepository rankingRepository)
         {
             _rankingRepository = rankingRepository;
         }
 
         [HttpGet]
-        public List<Ranking> GetRankings()
+        public List<SdIndex> GetSdIndices()
         {
-            var rankings = _rankingRepository.GetRankings().ToList();
-            return rankings;
+            return _rankingRepository.GetSdIndices().ToList();
         }
     }
 }

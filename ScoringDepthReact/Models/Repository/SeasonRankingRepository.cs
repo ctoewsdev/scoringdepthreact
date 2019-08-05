@@ -3,18 +3,18 @@ using ScoringDepthReact.Models.Domain;
 
 namespace ScoringDepthReact.Models.Repository
 {
-    public class SeasonTeamRepository : ISeasonTeamRepository
+    public class SeasonRankingRepository : ISeasonRankingRepository
     {
         private readonly AppDbContext _appDbContext;
 
-        public SeasonTeamRepository(AppDbContext appDbContext)
+        public SeasonRankingRepository(AppDbContext appDbContext)
         {
             _appDbContext = appDbContext;
         }
 
-        public IEnumerable<SeasonTeam> GetSeasonTeams()
+        public IEnumerable<SeasonRanking> GetSeasonRankings()
         {
-            return _appDbContext.SeasonTeam;
+            return _appDbContext.SeasonRanking;
         }
     }
 }
