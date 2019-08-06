@@ -1,7 +1,7 @@
 ﻿import * as types from "./actionTypes";
 import * as teamApi from "../../serverapi/teamApi";
 
-export function loadSuccess(seasons) {
+export function loadSuccess(teams) {
     return { type: types.LOAD_TEAMS_SUCCESS, teams };
 }
 

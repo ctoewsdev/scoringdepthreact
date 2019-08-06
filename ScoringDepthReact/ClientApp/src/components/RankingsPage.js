@@ -7,18 +7,47 @@ import * as countryActions from "../redux/actions/countryActions";
 import * as leagueActions from "../redux/actions/leagueActions";
 import * as seasonLeagueActions from "../redux/actions/seasonLeagueActions";
 import * as teamActions from "../redux/actions/teamActions";
-import * as seasonTeamActions from "../redux/actions/seasonTeamActions";
 import * as teamRankingActions from "../redux/actions/teamRankingActions";
-import * as rankingActions from "../redux/actions/rankingActions";
+import * as seasonRankingActions from "../redux/actions/seasonRankingActions";
+import * as sdIndexActions from "../redux/actions/sdIndexActions";
+import * as weekPeriodActions from "../redux/actions/weekPeriodActions";
 import { bindActionCreators } from "redux";
 import PropTypes from "prop-types";
-import SeasonTeamList from './SeasonTeamList';
+import SeasonRankingsList from './SeasonRankingsList';
 import { Link } from "react-router-dom";
 
 class RankingsPage extends React.Component {
 
     componentDidMount() {
-        const { years, seasons, regions, countries, leagues, seasonLeagues, teams, seasonTeams, TeamRankings, rankings, actions } = this.props;
+        const { years, seasons, regions, countries, leagues, seasonLeagues, teams, teamRankings, sdIndices, weekPeriods, seasonRankings, actions } = this.props;
+
+        //  const { seasonLeagueId } = this.ownProps.match.params.seasonLeagueId;
+
+
+
+        //if (seasonRankings.length === 0) {
+        //    //if (Object.keys(seasonLeagueId).length > 0) {
+        //    actions.loadSeasonRankings.catch(error => {
+        //        alert("Loading seasonRankings failed" + error);
+        //    });
+        //    //}
+        //}
+
+
+        if (seasonRankings.length === 0) {
+            actions.loadSeasonRankings().catch(error => {
+                alert("Loading seasonRankings failed" + error);
+            });
+        
+        }
+
+
+        if (teamRankings.length === 0) {
+            actions.loadTeamRankings().catch(error => {
+                alert("Loading teamRankings failed" + error);
+            });
+           
+        }
 
         if (teams.length === 0) {
             actions.loadTeams().catch(error => {
@@ -26,21 +55,15 @@ class RankingsPage extends React.Component {
             });
         }
 
-        if (seasonTeams.length === 0) {
-            actions.loadSeasonTeams().catch(error => {
-                alert("Loading seasonTeams failed" + error);
+        if (sdIndices.length === 0) {
+            actions.loadSdIndices().catch(error => {
+                alert("Loading sdIndices failed" + error);
             });
         }
 
-        if (TeamRankings.length === 0) {
-            actions.loadTeamRankings().catch(error => {
-                alert("Loading teamRankings failed" + error);
-            });
-        }
-
-        if (rankings.length === 0) {
-            actions.loadRankings().catch(error => {
-                alert("Loading rankings failed" + error);
+        if (weekPeriods.length === 0) {
+            actions.loadWeekPeriods().catch(error => {
+                alert("Loading weekPeriods failed" + error);
             });
         }
 
@@ -83,13 +106,15 @@ class RankingsPage extends React.Component {
     }
 
     render() {
+        console.log("teamRankingsloaded: " + this.props.teamRankings.length);
+        console.log("seasonRankingsloaded: " + this.props.seasonRankings.length);
         return (
             <>
                 <h1 class="text-center">League Rankings</h1>
                 <h3 class="text-center">
                     <Link to={"/league/" + this.props.seasonId}>{"Go back to select a different league"}</Link>
                 </h3>
-                <SeasonTeamsList seasonTeams{this.props.seasonTeams} />
+                <SeasonRankingsList seasonRankings={this.props.seasonRankings} />
             </>
         );
     }
@@ -97,63 +122,79 @@ class RankingsPage extends React.Component {
 
 RankingsPage.propTypes = {
     teams: PropTypes.array.isRequired,
-    rankings: PropTypes.array.isRequired,
-    seasonTeams: PropTypes.array.isRequired,
     teamRankings: PropTypes.array.isRequired,
+    seasonRankings: PropTypes.array.isRequired,
     years: PropTypes.array.isRequired,
     regions: PropTypes.array.isRequired,
     seasons: PropTypes.array.isRequired,
     countries: PropTypes.array.isRequired,
     leagues: PropTypes.array.isRequired,
     seasonLeagues: PropTypes.array.isRequired,
+    weekPeriods: PropTypes.array.isRequired,
+    sdIndices: PropTypes.array.isRequired,
     actions: PropTypes.object.isRequired
 };
-
-
-export function getSeasonTeamsBySeasonLeagueId(seasonTeams, seasonLeagueId) {
-    var seasonTeamsList = seasonTeams.filter(seasonTeam => seasonTeam.seasonLeagueId == seasonLeagueId);
-    return seasonTeamsList;
-}
 
 export function getSeasonId(seasonLeagues, seasonLeagueId) {
     return seasonLeagues.find(s => s.seasonLeagueId == seasonLeagueId).seasonId;
 }
 
-
 function mapStateToProps(state, ownProps) {
 
     const seasonLeagueId = ownProps.match.params.seasonLeagueId;
 
+
     //create and ship seasonId for back navigation
     const seasonId = state.seasonLeagues.length > 0 ? getSeasonId(state.seasonLeagues, seasonLeagueId) : {};
 
-    //get list of teams for only the selected seasonLeague
-    var seasonTeamsList = state.seasonTeams.length > 0 ? getSeasonTeamsBySeasonLeagueId(state.seasonTeams, seasonLeagueId) : [];
+   // var seasonRankingsList = state.seasonRankings.length > 0 ? getSeasonRankingsBySLId(seasonLeagueId) : [];
+  
 
     return {
         seasonId,
+      //  seasonRankings: state.seasonRankings,
+       
+       
+        //seasonRankings: state.seasonRankings.length === 0 || state.weekPeriods.length === 0 
+        //    ? []
+        //    : state.seasonRankings.map(seasonRanking => {
+        //        console.log(seasonRanking);
+        //        return {
+        //            ...seasonRanking,
 
-        seasonTeams: seasonsLeaguesList.length === 0 || state.years.length === 0 || state.seasons.length === 0 || state.countries.length === 0 || state.leagues.length === 0 || state.regions.length === 0
+                   
+        //            periodName: state.weekPeriods.find(w => w.weekPeriodId === seasonRanking.weekPeriodId).name
+        //        };
+        //    }),
+        teamRankings: state.teamRankings,
+        teams: state.teams,
+        weekPeriods: state.weekPeriods,
+        sdIndices: state.sdIndices,
+        years: state.years,
+        leagues: state.leagues,
+        seasonLeagues: state.seasonLeagues,
+        seasons: state.seasons,
+        regions: state.regions,
+        countries: state.countries,
+
+        seasonLeagueId,
+        seasonRankings: state.seasonRankings.length === 0 || state.weekPeriods.length === 0 || state.teams.length === 0
             ? []
-            : seasonTeamsList.map(seasonTeam => {
+            : state.seasonRankings.map(seasonRanking => {
                 return {
-                    ...seasonTeam,
-                    //yearName: state.years.find(y => y.yearId === state.seasons.find(s => s.seasonId === seasonLeague.seasonId).yearId).name,
-                    teamName: state.teams.find(t => t.teamId === seasonTeam.teamId).name,
-                    period: 
+                    ...seasonRanking,
+                    periodName: state.weekPeriods.find(w => w.weekPeriodId === state.seasonRanking.weekPeriodId).name,
 
-                    regionName: state.regions.find(r => r.regionId === state.seasons.find(s => s.seasonId === seasonLeague.seasonId).regionId).name,
-                    leagueCode: state.leagues.find(l => l.leagueId === seasonLeague.leagueId).code,
-                    leagueName: state.leagues.find(l => l.leagueId === seasonLeague.leagueId).name,
-                    countryName: state.countries.find(c => c.countryId === state.regions.find(r => r.regionId === state.seasons.find(s => s.seasonId === seasonLeague.seasonId).regionId).countryId).name,
+                    teamRankings: seasonRanking.teamRankings(teamRanking => {
+                        return {
+                            ...teamRanking,
+                            teamName: state.teams.find(t => t.teamId === teamRanking.teamId).name,
+                            sdIndex: state.sdIndices.find(i => i.sdIndexId === teamRanking.sdIndexId).index
+
+                        }
+                    })
                 };
             }),
-
-        years: state.years,
-        regions: state.regions,
-        leagues: state.leagues,
-        seasons: state.seasons,
-        countries: state.countries
     };
 }
 
@@ -168,9 +209,11 @@ function mapDispatchToProps(dispatch) {
             loadSeasonLeagues: bindActionCreators(seasonLeagueActions.loadSeasonLeagues, dispatch),
             loadLeagues: bindActionCreators(leagueActions.loadLeagues, dispatch),
             loadTeams: bindActionCreators(teamActions.loadTeams, dispatch),
-            loadSeasonTeams: bindActionCreators(seasonTeamActions.loadSeasonTeams, dispatch),
             loadTeamRankings: bindActionCreators(teamRankingActions.loadTeamRankings, dispatch),
-            loadRankings: bindActionCreators(rankingActions.loadRankings, dispatch)
+            loadSeasonRankings: bindActionCreators(seasonRankingActions.loadSeasonRankings, dispatch),
+           // loadSeasonRanking: bindActionCreators(seasonRankingActions.loadSeasonRanking, dispatch),
+            loadSdIndices: bindActionCreators(sdIndexActions.loadSdIndices, dispatch),
+            loadWeekPeriods: bindActionCreators(weekPeriodActions.loadWeekPeriods, dispatch)
         }
     };
 }

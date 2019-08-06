@@ -1,7 +1,7 @@
 import { handleResponse, handleError } from "./apiUtils";
-const baseUrl = "api/seasonteam";
+const baseUrl = "api/sdIndex";
 
-export function getSeasonTeams() {
+export function getSdIndices() {
   return fetch(baseUrl)
     .then(handleResponse)
     .catch(handleError);

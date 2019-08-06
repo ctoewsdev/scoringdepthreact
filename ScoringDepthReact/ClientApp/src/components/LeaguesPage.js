@@ -119,7 +119,7 @@ function mapStateToProps(state, ownProps) {
         regions: state.regions,
         leagues: state.leagues,
         seasons: state.seasons,
-        countries: state.countriesEastTitle
+        countries: state.countries
     };
 }
 

@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -44,8 +40,6 @@ namespace ScoringDepthReact
                 configuration.RootPath = "ClientApp/build";
             });
 
-
-
             // provide instances of dependencies
             services.AddTransient<IYearRepository, YearRepository>();
             services.AddTransient<ICountryRepository, CountryRepository>();
@@ -56,6 +50,8 @@ namespace ScoringDepthReact
             services.AddTransient<ISeasonRepository, SeasonRepository>();
             services.AddTransient<ISdIndexRepository, SdIndexRepository>();
             services.AddTransient<ITeamRepository, TeamRepository>();
+            services.AddTransient<ITeamRankingRepository, TeamRankingRepository>();
+            services.AddTransient<IWeekPeriodRepository, WeekPeriodRepository>();
             services.AddTransient<IFeedbackRepository, FeedbackRepository>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);

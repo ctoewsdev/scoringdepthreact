@@ -5,9 +5,10 @@ export default {
     years: [],
     leagues: [],
     teams: [],
-    rankings: [],
+    sdIndices: [],
     feedback: [],
     seasonLeagues: [],
-    seasontTeams: [],
-    teamRankings: []
+    seasonRankings: [],
+    teamRankings: [],
+    weekPeriods: []
 };

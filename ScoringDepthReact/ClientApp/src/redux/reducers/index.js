@@ -6,10 +6,11 @@ import seasons from "./seasonReducer";
 import seasonLeagues from "./seasonLeagueReducer";
 import years from "./yearReducer";
 import countries from "./countryReducer";
-import seasonTeams from "./seasonTeamReducer";
+import seasonRankings from "./seasonRankingReducer";
 import teams from "./teamReducer";
 import teamRankings from "./teamRankingReducer";
-import rankings from "./rankingReducer";
+import weekPeriods from "./weekPeriodReducer";
+import sdIndices from "./sdIndexReducer";
 
 const rootReducer = combineReducers({
     feedback,
@@ -19,10 +20,11 @@ const rootReducer = combineReducers({
     years,
     seasonLeagues,
     countries,
-    seasonTeams,
+    seasonRankings,
     teams,
     teamRankings,
-    rankings
+    weekPeriods,
+    sdIndices
 });
 
 export default rootReducer;

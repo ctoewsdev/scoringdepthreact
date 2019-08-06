@@ -6,5 +6,7 @@ namespace ScoringDepthReact.Models.Repository
     public interface ISeasonRankingRepository
     {
         IEnumerable<SeasonRanking> GetSeasonRankings();
+        IEnumerable<SeasonRanking> GetSeasonRankings(long seasonLeagueId);
+
     }
 }
